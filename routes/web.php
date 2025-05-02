@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', [HomeController::class , 'index'])->middleware('auth');
 
@@ -23,3 +25,10 @@ Route::post('/users' , [UserController::class , 'store'])->name('users.store');
 Route::get('/users/{id}' , [UserController::class , 'edit'])->name('users.edit');
 Route::put('/users/{id}' , [UserController::class , 'update'])->name('users.update');
 Route::delete('/users/{id}' , [UserController::class , 'destroy'])->name('users.destroy');
+
+Route::get('/roles' , [RoleController::class , 'index'])->name('roles');
+Route::get('/roles/add' , [RoleController::class , 'add'])->name('roles.add');
+Route::post('/roles' , [RoleController::class , 'store'])->name('roles.store');
+Route::get('/roles/{id}' , [RoleController::class , 'edit'])->name('roles.edit');
+Route::put('/roles/{id}' , [RoleController::class , 'update'])->name('roles.update');
+Route::delete('/roles/{id}' , [RoleController::class , 'destroy'])->name('roles.destroy');

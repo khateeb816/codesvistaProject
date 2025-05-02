@@ -77,7 +77,7 @@
                     <ul class="nav child_menu">
                       <li><a href="./">Dashboard</a></li>
                       <li><a href="{{ route('users') }}">Manage Users</a></li>
-                      <li><a href="./manage_role.php">Manage Role</a></li>
+                      <li><a href="{{ route('roles') }}">Manage Role</a></li>
                       <li><a href="./manage_users_log.php">User Log</a></li>
                     </ul>
                   </li>

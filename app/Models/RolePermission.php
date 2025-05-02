@@ -12,8 +12,13 @@ class RolePermission extends Model
     protected $table = 'role_permissions';
 
     protected $fillable = [
-        'role_id',
-        'permission_id',
+        'role_name',
+        'permission_name',
+        'can_view',
+        'can_add',
+        'can_edit',
+        'can_delete',
+        'can_authorize',
     ];
 
     protected $dates = [
