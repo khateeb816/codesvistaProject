@@ -29,7 +29,8 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'user_type' => 'User',
             'permission' => 'user',
-            'full_name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'contact_no' => fake()->phoneNumber(),
             'is_active' => true,
             'is_admin' => false

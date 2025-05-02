@@ -30,6 +30,8 @@
     <!-- Custom Theme Style -->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <script src="cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
 <style>
   .title_bg_color{
     background-color: #2A3F54 !important;
@@ -74,7 +76,7 @@
                   <li><a><i class="fa fa-home"></i> Admin Area <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="./">Dashboard</a></li>
-                      <li><a href="./manage_users.php">Manage Users</a></li>
+                      <li><a href="{{ route('users') }}">Manage Users</a></li>
                       <li><a href="./manage_role.php">Manage Role</a></li>
                       <li><a href="./manage_users_log.php">User Log</a></li>
                     </ul>

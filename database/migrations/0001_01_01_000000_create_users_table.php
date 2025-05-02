@@ -15,9 +15,10 @@ return new class extends Migration
         $table->id();
         $table->string('username', 100);
         $table->string('user_type', 50)->default('User');
-        $table->string('permission', 100);
+        $table->string('permission', 100)->default('User');
         $table->string('password');
-        $table->string('full_name', 255)->nullable();
+        $table->string('first_name', 255)->nullable();
+        $table->string('last_name', 255)->nullable();
         $table->string('father_name', 255)->nullable();
         $table->string('contact_no', 20)->nullable();
         $table->string('email', 100);
