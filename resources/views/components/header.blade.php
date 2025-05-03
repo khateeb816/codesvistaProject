@@ -83,12 +83,12 @@
                   </li>
                   <li><a><i class=" fa fa-solid fa-gears"></i> Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="./payment_agents.php">Add Payment Agents</a></li>
-                      <li><a href="./recruitment_agents.php">Recruitment Agents</a></li>
-                      <li><a href="./travel_agents.php">Add Travel Agents</a></li>
-                      <li><a href="./visa_categories.php">Visa Categories</a></li>
-                      <li><a href="./education_categories.php">Education Categories</a></li>
-                      <li><a href="./job_categories.php">Job Categories</a></li>
+                      <li><a href="{{ route('paymentAgents') }}">Add Payment Agents</a></li>
+                      <li><a href="{{ route('recruitmentAgents') }}">Recruitment Agents</a></li>
+                      <li><a href="{{ route('travelAgents') }}">Add Travel Agents</a></li>
+                      <li><a href="{{ route('visaCategories') }}">Visa Categories</a></li>
+                      <li><a href="{{ route('educationCategories') }}">Education Categories</a></li>
+                      <li><a href="{{ route('jobCategories') }}">Job Categories</a></li>
                       <li><a href="sub_categories.php">Sub Categories</a></li>
                       <li><a href="./working_categories.php">Workings Categories</a></li>
                       <li><a href="./visa_issuing_authorities.php">Visa Issuing Authorities </a></li>
@@ -99,7 +99,7 @@
                       <li><a href="./age_range.php">Age Range</a></li>
                       <li><a href="./salary_range.php">Salary Range</a></li>
                       <li><a href="./experience_range.php">Experiance Range</a></li>
-                      <li><a href="./airlines.php">Airlines</a></li>
+                      <li><a href="{{ route('airlines') }}">Airlines</a></li>
                       <li><a href="./visa_profession.php">Visa Profession</a></li>
                       <li><a href="./sectors.php">Sectors/ Instruction</a></li>
                       <li><a href="./skills.php">Skills</a></li>
@@ -123,8 +123,8 @@
                     </ul>
                     <li><a><i class=" fa fa-solid fa-gears"></i>candidate Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="./employer_setup.php">initial Registration</a></li>
-                      <li><a href="./employer_plans.php">Candidate Final Registration</a></li>
+                      <li><a href="{{ route('initialRegistration') }}">initial Registration</a></li>
+                      <li><a href="{{ route('finalRegistration') }}">Candidate Final Registration</a></li>
                       <li><a href="./job_setup.php">Apply Jobs</a></li>
                       <li><a href="./report_manager.php">Shortlisting</a></li>
                       <li><a href="./employer_ledger.php">Shortlisted Candidates</a></li>

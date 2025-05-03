@@ -13,7 +13,7 @@ return new class extends Migration
 {
     Schema::create('traval_agents', function (Blueprint $table) {
         $table->id();
-        $table->string('code', 10);
+        $table->string('code', 10)->nullable();
         $table->string('name', 100);
         $table->string('location', 100);
         $table->string('arlines_deals_with', 100)->nullable();

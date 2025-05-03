@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('recruitment_agents', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 10); // Code is required
+            $table->string('code', 10)->nullable(); // Code is required
             $table->string('name', 100); // Name is required
             $table->string('location', 100); // Location is required
             $table->string('cnic', 20); // CNIC is required
