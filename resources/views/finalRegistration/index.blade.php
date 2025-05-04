@@ -227,7 +227,7 @@
 </style>
 
 <!-- Candidate Registration Form -->
-<div class="right_col" role="main">
+<div   role="main">
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
@@ -258,7 +258,7 @@
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li>{!! is_array($error) ? json_encode($error) : $error !!}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -271,23 +271,23 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="username">Username <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="username" class="form-control" value="{{ old('username') }}"
-                                        name="username" placeholder="Username" required type="text">
+                                        name="username" placeholder="Username" required  type="text">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="password">Password <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="password" class="form-control" value="{{ old('password') }}"
-                                        name="password" placeholder="Password" required type="password">
+                                        name="password" placeholder="Password" required   type="password">
                                 </div>
                             </div>
 
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="candidate_type">Candidate Type <span
-                                            class="required text-danger">*</span></label>
-                                    <select id="candidate_type" name="candidate_type" class="form-control" required>
+                                            class="  text-danger">*</span></label>
+                                    <select id="candidate_type" name="candidate_type" class="form-control"  >
                                         <option value="">Select Candidate Type</option>
                                         <option value="UnSkilled">UnSkilled</option>
                                         <option value="Skilled">Skilled</option>
@@ -304,8 +304,8 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="title">Title <span
-                                            class="required text-danger">*</span></label>
-                                    <select id="title" name="title" class="form-control" required>
+                                            class="  text-danger">*</span></label>
+                                    <select id="title" name="title" class="form-control"  >
                                         <option value="">Select Title</option>
                                         <option value="Mr.">Mr.</option>
                                         <option value="Mrs.">Mrs.</option>
@@ -323,14 +323,14 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="first_name">First Name <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="first_name" class="form-control" value="{{ old('first_name') }}"
-                                        name="first_name" placeholder="First Name" required type="text">
+                                        name="first_name" placeholder="First Name" required  type="text">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label" for="material_status">Material Status</label>
-                                    <select id="material_status" name="material_status" class="form-control">
-                                        <option value="">Select Material Status</option>
+                                    <label class="control-label" for="marital_status">Marital Status</label>
+                                    <select id="marital_status" name="marital_status" class="form-control">
+                                        <option value="">Select Marital Status</option>
                                         <option value="Single">Single</option>
                                         <option value="Married">Married</option>
                                         <option value="Divorced">Divorced</option>
@@ -342,9 +342,9 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="last_name">Last Name <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="last_name" class="form-control" value="{{ old('last_name') }}"
-                                        name="last_name" placeholder="Last Name" required type="text">
+                                        name="last_name" placeholder="Last Name" required  type="text">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="education">Education</label>
@@ -362,9 +362,9 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="cnic">CNIC <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="cnic" class="form-control" value="{{ old('cnic') }}"
-                                        name="cnic" placeholder="CNIC" required type="text">
+                                        name="cnic" placeholder="CNIC" required  type="text">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="profession">Profession</label>
@@ -376,9 +376,9 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="father_name">Father Name <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="father_name" class="form-control" value="{{ old('father_name') }}"
-                                        name="father_name" placeholder="Father Name" required type="text">
+                                        name="father_name" placeholder="Father Name" required  type="text">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="experience">Experience</label>
@@ -397,8 +397,8 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="gender">Gender <span
-                                            class="required text-danger">*</span></label>
-                                    <select id="gender" name="gender" class="form-control" required>
+                                            class="  text-danger">*</span></label>
+                                    <select id="gender" name="gender" class="form-control"  required>
                                         <option value="">Select Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -420,10 +420,10 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="date_of_birth">Date of Birth <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="date_of_birth" class="form-control"
                                         value="{{ old('date_of_birth') }}" name="date_of_birth"
-                                        placeholder="Date of Birth" required type="date">
+                                        placeholder="Date of Birth" required  type="date">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="job_applied_for">Job Applied For</label>
@@ -460,31 +460,9 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="nationality">Nationality <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="nationality" class="form-control" value="{{ old('nationality') }}"
-                                        name="nationality" placeholder="Nationality" required type="text">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label" for="email">Email <span
-                                            class="required text-danger">*</span></label>
-                                    <input id="email" class="form-control" value="{{ old('email') }}"
-                                        name="email" placeholder="Email" required type="email">
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label" for="mobile">Mobile <span
-                                            class="required text-danger">*</span></label>
-                                    <input id="mobile" class="form-control" value="{{ old('mobile') }}"
-                                        name="mobile" placeholder="Mobile" required type="text">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="address">Address</label>
-                                    <textarea name="address" id="address" class="form-control" cols="30" rows="5">{{ old('address') }}</textarea>
+                                        name="nationality" placeholder="Nationality" required  type="text">
                                 </div>
                             </div>
 
@@ -593,30 +571,6 @@
                                         placeholder="Street" type="text">
                                 </div>
                             </div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label" for="residence_zip2">Zip</label>
-                                    <input id="residence_zip2" class="form-control"
-                                        value="{{ old('residence_zip') }}" name="residence_zip" placeholder="Zip"
-                                        type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label" for="residence_city2">City</label>
-                                    <input id="residence_city2" class="form-control"
-                                        value="{{ old('residence_city') }}" name="residence_city" placeholder="City"
-                                        type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label class="control-label" for="residence_address">Street</label>
-                                    <input id="residence_address" class="form-control"
-                                        value="{{ old('residence_address') }}" name="residence_address"
-                                        placeholder="Street" type="text">
-                                </div>
-                            </div>
                         </div><!-- End Residence Info Tab -->
 
                         <!-- Contact Details Tab -->
@@ -624,15 +578,15 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="email">Email <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="email" class="form-control" value="{{ old('email') }}"
-                                        name="email" placeholder="Email" required type="email">
+                                        name="email" placeholder="Email" required  type="email">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label" for="mobile">Mobile <span
-                                            class="required text-danger">*</span></label>
+                                            class="  text-danger">*</span></label>
                                     <input id="mobile" class="form-control" value="{{ old('mobile') }}"
-                                        name="mobile" placeholder="Mobile" required type="text">
+                                        name="mobile" placeholder="Mobile" required  type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -712,13 +666,13 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="degree">Degree</label>
-                                            <input id="degree" class="form-control" value="{{ old('degree') }}" name="degree" placeholder="Degree" type="text">
+                                            <input id="degree" class="form-control" value="" placeholder="Degree" type="text">
                                         </div>
                                     </div>
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="institute">Institute</label>
-                                            <input id="institute" class="form-control" value="{{ old('institute') }}" name="institute" placeholder="Institute" type="text">
+                                            <input id="institute" class="form-control" value="" placeholder="Institute" type="text">
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -742,6 +696,7 @@
                                                         <!-- Qualifications will be added here dynamically -->
                                                     </tbody>
                                                 </table>
+                                                <div id="qualification-inputs"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -752,7 +707,7 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="from_prof">From</label>
-                                            <select id="from_prof" name="from_prof" class="form-control">
+                                            <select id="from_prof" class="form-control">
                                                 <option value="">From Year</option>
                                                 @for ($i = date('Y'); $i >= 1970; $i--)
                                                     <option value="{{ $i }}">{{ $i }}</option>
@@ -763,7 +718,7 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="to_prof">To</label>
-                                            <select id="to_prof" name="to_prof" class="form-control">
+                                            <select id="to_prof" class="form-control">
                                                 <option value="">To Year</option>
                                                 @for ($i = date('Y'); $i >= 1970; $i--)
                                                     <option value="{{ $i }}">{{ $i }}</option>
@@ -774,13 +729,13 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="degree_prof">Degree</label>
-                                            <input id="degree_prof" class="form-control" value="{{ old('degree_prof') }}" name="degree_prof" placeholder="Degree" type="text">
+                                            <input id="degree_prof" class="form-control" value="" placeholder="Degree" type="text">
                                         </div>
                                     </div>
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="institute_prof">Institute</label>
-                                            <input id="institute_prof" class="form-control" value="{{ old('institute_prof') }}" name="institute_prof" placeholder="Institute" type="text">
+                                            <input id="institute_prof" class="form-control" value="" placeholder="Institute" type="text">
                                         </div>
                                     </div>
                                     <div class="item form-group">
@@ -805,6 +760,7 @@
                                                         <!-- Professional Qualifications will be added here dynamically -->
                                                     </tbody>
                                                 </table>
+                                                <div id="professional-qualification-inputs"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -815,13 +771,13 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="company">Company</label>
-                                            <input id="company" class="form-control" value="{{ old('company') }}" name="company" placeholder="Company" type="text">
+                                            <input id="company" class="form-control" value="" placeholder="Company" type="text">
                                         </div>
                                     </div>
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="main_category">Main Category</label>
-                                            <select id="main_category" name="main_category" class="form-control">
+                                            <select id="main_category" class="form-control">
                                                 <option value="">Main Category</option>
                                                 <option value="IT">IT</option>
                                                 <option value="Finance">Finance</option>
@@ -854,7 +810,7 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="working_category">Working Category</label>
-                                            <select id="working_category" name="working_category" class="form-control">
+                                            <select id="working_category" class="form-control">
                                                 <option value="">Working Category</option>
                                                 <option value="Full-time">Full-time</option>
                                                 <option value="Part-time">Part-time</option>
@@ -870,7 +826,7 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="from_exp">From</label>
-                                            <select id="from_exp" name="from_exp" class="form-control">
+                                            <select id="from_exp" class="form-control">
                                                 <option value="">From Year</option>
                                                 @for ($i = date('Y'); $i >= 1970; $i--)
                                                     <option value="{{ $i }}">{{ $i }}</option>
@@ -881,7 +837,7 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="to_exp">To</label>
-                                            <select id="to_exp" name="to_exp" class="form-control">
+                                            <select id="to_exp" class="form-control">
                                                 <option value="">To Year</option>
                                                 @for ($i = date('Y'); $i >= 1970; $i--)
                                                     <option value="{{ $i }}">{{ $i }}</option>
@@ -892,8 +848,8 @@
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="sector">Sector</label>
-                                            <select id="sector" name="sector" class="form-control">
-                                                <option value="">Sector</option>
+                                            <select id="sector" class="form-control">
+                                                <option value="">Select Sector</option>
                                                 <option value="Public">Public</option>
                                                 <option value="Private">Private</option>
                                                 <option value="NGO">NGO</option>
@@ -904,7 +860,7 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <label class="control-label" for="type">Type</label>
                                             <select id="type" name="type" class="form-control">
-                                                <option value="">Local</option>
+                                                <option value="">Select Type</option>
                                                 <option value="Local">Local</option>
                                                 <option value="International">International</option>
                                             </select>
@@ -944,7 +900,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <label class="control-label" for="police_case">Have you ever convicted in police case in the cour of law</label>
                                     <select id="police_case" name="police_case" class="form-control">
-                                        <option value="">No</option>
+                                        <option value="">select</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
@@ -954,7 +910,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <label class="control-label" for="political_affiliation">Do you have affiliation/membership with any political/religiuos party</label>
                                     <select id="political_affiliation" name="political_affiliation" class="form-control">
-                                        <option value="">No</option>
+                                        <option value="">select</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
@@ -982,79 +938,65 @@
 
                         <!-- Candidate Dependents Tab -->
                         <div class="tab-pane" id="candidate-dependents">
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="dependent_type">Dependent</label>
-                                    <select id="dependent_type" name="dependent_type" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="Mother">Mother</option>
-                                        <option value="Father">Father</option>
-                                        <option value="Spouse">Spouse</option>
-                                        <option value="Child">Child</option>
-                                        <option value="Sibling">Sibling</option>
-                                    </select>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Add Dependent</h4>
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-3">
+                                            <label for="dependent-type">Type</label>
+                                            <select class="form-control" id="dependent-type">
+                                                <option value="">Select Type</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Spouse">Spouse</option>
+                                                <option value="Child">Child</option>
+                                                <option value="Sibling">Sibling</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="dependent-name">Name</label>
+                                            <input type="text" class="form-control" id="dependent-name" placeholder="Name">
+                                        </div>
+                                        <div class="col-md-2 mb-3">
+                                            <label for="dependent-age">Age</label>
+                                            <input type="number" class="form-control" id="dependent-age" placeholder="Age">
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="dependent-relation">Relation</label>
+                                            <select class="form-control" id="dependent-relation">
+                                                <option value="">Select Relation</option>
+                                                <option value="Parent">Parent</option>
+                                                <option value="Child">Child</option>
+                                                <option value="Spouse">Spouse</option>
+                                                <option value="Sibling">Sibling</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1 mb-3" style="margin-top: 25px;">
+                                            <button type="button" class="btn btn-primary" id="add-dependent-btn">Add</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="dependent_gender">Gender</label>
-                                    <select id="dependent_gender" name="dependent_gender" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <label class="control-label" for="dependent_age">Age</label>
-                                    <input id="dependent_age" class="form-control" value="{{ old('dependent_age') }}" name="dependent_age" placeholder="Age" type="number">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 text-left">
-                                    <button type="button" class="btn btn-success add-dependent">Add</button>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dependents-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Dependent</th>
-                                                    <th>Gender</th>
-                                                    <th>Age</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" name="dependent_name[]"
-                                                            class="form-control" placeholder="Name">
-                                                    </td>
-                                                    <td>
-                                                        <select name="dependent_relation[]" class="form-control">
-                                                            <option value="">Select Relation</option>
-                                                            <option value="Spouse">Spouse</option>
-                                                            <option value="Child">Child</option>
-                                                            <option value="Parent">Parent</option>
-                                                            <option value="Sibling">Sibling</option>
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" name="dependent_age[]"
-                                                            class="form-control" placeholder="Age">
-                                                    </td>
-                                                    <td>
-                                                        <button type="button"
-                                                            class="btn btn-success add-dependent"><i
-                                                                class="fa fa-plus"></i></button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h4>Dependents List</h4>
+                                    <table class="table table-bordered" id="dependents-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Name</th>
+                                                <th>Age</th>
+                                                <th>Relation</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Dependents will be added here dynamically -->
+                                        </tbody>
+                                    </table>
+                                    <div id="dependents-container">
+                                        <!-- Hidden inputs will be added here -->
                                     </div>
                                 </div>
                             </div>
@@ -1066,24 +1008,18 @@
                                 <div class="col-md-12">
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <label class="control-label" for="resume_name">Resume Name</label>
-                                            <input id="resume_name" class="form-control" name="resume_name" type="text" placeholder="Enter resume name">
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="dropzone-wrapper" id="resume-dropzone">
                                                 <div class="dropzone-desc">
                                                     <i class="fa fa-cloud-upload"></i>
                                                     <p>Drag & drop files here or click to browse</p>
                                                 </div>
-                                                <input type="file" name="resume_file" class="dropzone-input">
+                                                <input type="file" name="resumes" class="dropzone-input" onchange="showFilePreview(this)">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="item form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div id="file-preview" class="file-preview" style="display: none;">
+                                            <div id="file-preview" class="file-preview">
                                                 <div class="file-preview-content">
                                                     <i class="fa fa-file-pdf-o file-icon"></i>
                                                     <div class="file-details">
@@ -1094,38 +1030,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item form-group">
-                                        <div class="col-md-12 col-sm-12 col-xs-12 text-left">
-                                            <button type="button" id="add-resume" class="btn btn-primary"><i class="fa fa-plus"></i> Add </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="item form-group">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="resumes-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Resume Name</th>
-                                                            <th>File</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <!-- Resume files will be listed here -->
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 text-left">
-                                    {{-- <button type="button" class="btn btn-success add-resume">Add</button> --}}
                                 </div>
                             </div>
                         </div><!-- End Resumes Tab -->
@@ -1135,7 +1039,7 @@
                     <div class="form-group">
                         <div class="col-md-2 col-md-offset-5 d-flex">
                             <button type="submit" class="btn btn-success">Submit</button>
-                            <a href="{{ route('initialRegistration') }}" class="btn btn-default border">Cancel</a>
+                            <a href="{{ route('finalRegistration') }}" class="btn btn-default border">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -1148,7 +1052,7 @@
 <!-- These scripts have been moved to the header component -->
 
 <!-- Candidates List -->
-<div class="right_col" role="main">
+<div   role="main">
     <div class="">
         <div class="row">
             <div class="col-md-12">
@@ -1185,12 +1089,12 @@
                                             <td>{{ $candidate->mobile }}</td>
                                             <td>{{ $candidate->experience }}</td>
                                             <td>
-                                                <a href="{{ route('initialRegistration.edit', $candidate->id) }}"
+                                                <a href="{{ route('finalRegistration.edit', $candidate->id) }}"
                                                     class="btn btn-info btn-sm">
                                                     <i class="fa fa-edit"></i> Edit
                                                 </a>
                                                 <form
-                                                    action="{{ route('initialRegistration.destroy', $candidate->id) }}"
+                                                    action="{{ route('finalRegistration.destroy', $candidate->id) }}"
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
@@ -1213,6 +1117,26 @@
 </div>
 
 <script>
+
+    function showFilePreview(input) {
+        var file = input.files[0];
+        if (file) {
+            var fileName = document.getElementById('file-name');
+            fileName.textContent = file.name;
+
+            var fileIcon = document.getElementById('file-icon');
+            fileIcon.className = 'fa fa-file-' + file.type.split('/')[1];
+
+            var fileSize = document.getElementById('file-size');
+            fileSize.textContent = file.size > 1024 ? (file.size / 1024).toFixed(2) + ' KB' : file.size + ' bytes';
+
+            var preview = document.getElementById('file-preview');
+            preview.style.display = 'block';
+        } else {
+            var preview = document.getElementById('file-preview');
+            preview.style.display = 'none';
+        }
+    }
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize DataTable (keeping jQuery for this as it's a jQuery plugin)
         if ($.fn.DataTable) {
@@ -1498,7 +1422,7 @@
                     document.getElementById('degree').value = '';
                     document.getElementById('institute').value = '';
                 } else {
-                    alert('Please fill in all required fields');
+                    alert('Please fill in all   fields');
                 }
             };
             console.log('Add qualification button handler attached');
@@ -1598,12 +1522,104 @@
             console.log('Add experience button not found');
         }
         
+        // Add dependent row functionality for the new UI
+        var addDependentBtn = document.getElementById('add-dependent-btn');
+        if (addDependentBtn) {
+            addDependentBtn.addEventListener('click', function() {
+                // Get form values
+                var type = document.getElementById('dependent-type').value;
+                var name = document.getElementById('dependent-name').value;
+                var age = document.getElementById('dependent-age').value;
+                var relation = document.getElementById('dependent-relation').value;
+                
+                // Debug output
+                console.log('Type:', type);
+                console.log('Name:', name);
+                console.log('Age:', age);
+                console.log('Relation:', relation);
+                
+                // Validate required fields
+                if (!type || !name) {
+                    var missing = [];
+                    if (!type) missing.push('Type');
+                    if (!name) missing.push('Name');
+                    alert('Please fill in the following fields: ' + missing.join(', '));
+                    return;
+                }
+                
+                // Create new row
+                var newRow = document.createElement('tr');
+                newRow.innerHTML = 
+                    '<td>' + type + '</td>' +
+                    '<td>' + name + '</td>' +
+                    '<td>' + age + '</td>' +
+                    '<td>' + relation + '</td>' +
+                    '<td>' +
+                        '<button type="button" class="btn btn-danger btn-sm delete-dependent"><i class="fa fa-trash"></i></button>' +
+                    '</td>';
+                
+                // Add row to table
+                document.querySelector('#dependents-table tbody').appendChild(newRow);
+                
+                // Add hidden inputs for form submission
+                var container = document.getElementById('dependents-container');
+                var index = document.querySelectorAll('#dependents-table tbody tr').length - 1;
+                
+                var typeInput = document.createElement('input');
+                typeInput.type = 'hidden';
+                typeInput.name = 'dependent_type[]';
+                typeInput.value = type;
+                container.appendChild(typeInput);
+                
+                var nameInput = document.createElement('input');
+                nameInput.type = 'hidden';
+                nameInput.name = 'dependent_name[]';
+                nameInput.value = name;
+                container.appendChild(nameInput);
+                
+                var ageInput = document.createElement('input');
+                ageInput.type = 'hidden';
+                ageInput.name = 'dependent_age[]';
+                ageInput.value = age;
+                container.appendChild(ageInput);
+                
+                var relationInput = document.createElement('input');
+                relationInput.type = 'hidden';
+                relationInput.name = 'dependent_relation[]';
+                relationInput.value = relation;
+                container.appendChild(relationInput);
+                
+                // Clear form
+                document.getElementById('dependent-type').value = '';
+                document.getElementById('dependent-name').value = '';
+                document.getElementById('dependent-age').value = '';
+                document.getElementById('dependent-relation').value = '';
+            });
+            console.log('Add dependent button handler attached');
+        } else {
+            console.log('Add dependent button not found');
+        }
+        
         // Event delegation for remove buttons
         document.addEventListener('click', function(e) {
+            // Handle remove-row buttons (for qualifications, professional qualifications, etc.)
             if (e.target && e.target.classList.contains('remove-row') || 
                 (e.target.parentElement && e.target.parentElement.classList.contains('remove-row'))) {
                 const button = e.target.classList.contains('remove-row') ? e.target : e.target.parentElement;
                 button.closest('tr').remove();
+            }
+            
+            // Handle delete-dependent buttons
+            if (e.target && e.target.classList.contains('delete-dependent') || 
+                (e.target.parentElement && e.target.parentElement.classList.contains('delete-dependent'))) {
+                const button = e.target.classList.contains('delete-dependent') ? e.target : e.target.parentElement;
+                const row = button.closest('tr');
+                const index = Array.from(row.parentNode.children).indexOf(row);
+                console.log('Removing dependent at index:', index);
+                row.remove();
+                
+                // Note: We're not removing the hidden inputs here because it would be complex to match them up
+                // The server will handle the array data correctly as long as we have the right number of inputs
             }
         });
 

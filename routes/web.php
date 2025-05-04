@@ -3,6 +3,7 @@
 use App\Http\Controllers\AirlinesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EducationCategoryController;
+use App\Http\Controllers\ExperienceRangeController;
 use App\Http\Controllers\FinalRegistrationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InitialRegistrationController;
@@ -14,15 +15,6 @@ use App\Http\Controllers\TravelAgentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisaCategoryController;
 use Illuminate\Support\Facades\Route;
-
-
-
-
-
-
-
-
-
 
 
 Route::get('/', [HomeController::class , 'index'])->middleware('auth');
@@ -104,3 +96,9 @@ Route::post('/finalRegistrations' , [FinalRegistrationController::class , 'store
 Route::get('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'edit'])->name('finalRegistration.edit');
 Route::put('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'update'])->name('finalRegistration.update');
 Route::delete('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'destroy'])->name('finalRegistration.destroy');
+
+Route::get('/experienceRanges' , [ExperienceRangeController::class , 'index'])->name('experienceRanges');
+Route::post('/experienceRanges' , [ExperienceRangeController::class , 'store'])->name('experienceRanges.store');
+Route::get('/experienceRanges/{id}' , [ExperienceRangeController::class , 'edit'])->name('experienceRanges.edit');
+Route::put('/experienceRanges/{id}' , [ExperienceRangeController::class , 'update'])->name('experienceRanges.update');
+Route::delete('/experienceRanges/{id}' , [ExperienceRangeController::class , 'destroy'])->name('experienceRanges.destroy');

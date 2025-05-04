@@ -1,5 +1,5 @@
 @include('components.header')
-<div class="right_col" role="main">
+<div   role="main">
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
@@ -48,7 +48,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
-<div class="right_col" role="main">
+<div   role="main">
     <div class="">
         <div class="row">
             <div class="col-md-12">

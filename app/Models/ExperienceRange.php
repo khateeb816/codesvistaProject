@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExperienceRange extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 }

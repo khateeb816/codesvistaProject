@@ -3,25 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Candidate extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'username',
         'password',
         'candidate_type',
         'religion',
         'title',
-        'wages_salary',
+        'salary',
+        'gender',
+        'marital_status',
         'first_name',
-        'material_status',
         'last_name',
         'education',
         'cnic',
+        'experience',
         'profession',
         'father_name',
-        'experience',
-        'gender',
         'job_type',
         'date_of_birth',
         'job_applied_for',
@@ -29,68 +32,53 @@ class Candidate extends Model
         'plan',
         'place_of_birth',
         'nationality',
-        'address',
         'mobile',
         'email',
+        'address',
         'passport_number',
         'passport_issue_date',
         'passport_expiry_date',
         'passport_issue_place',
-        'residence_country',
-        'residence_state',
-        'residence_province',
-        'residence_district',
-        'residence_city',
-        'residence_zip',
-        'residence_street',
-        'residence_address',
-        'alternate_phone',
-        'emergency_contact',
+        'country',
+        'state',
+        'province',
+        'district',
+        'city',
+        'zip',
+        'street',
+        'alternate_mobile',
+        'fax',
         'website',
+        'qualification',
+        'professional_qualification',
+        'professional_experience',
+        'dependents',
         'return_address',
-        'police_case',
-        'political_affiliation',
+        'qualification',
+        'professional_qualification',
+        'professional_experience',
+        'any_police_case',
+        'any_political_involvement',
         'present_employment',
         'achievements',
+        'dependents',
+        'resume',
     ];
 
-    /**
-     * Get the qualifications for the candidate.
-     */
-    public function qualifications()
+    protected $casts = [
+        'any_police_case' => 'string',
+        'any_political_involvement' => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'qualification' => 'json',
+        'professional_qualification' => 'json',
+        'professional_experience' => 'json',
+        'dependents' => 'json',
+    ];
+
+    public function getFullNameAttribute()
     {
-        return $this->hasMany(Qualification::class);
+        return $this->first_name . ' ' . $this->last_name;
     }
 
-    /**
-     * Get the professional qualifications for the candidate.
-     */
-    public function professionalQualifications()
-    {
-        return $this->hasMany(ProfessionalQualification::class);
-    }
-
-    /**
-     * Get the experiences for the candidate.
-     */
-    public function experiences()
-    {
-        return $this->hasMany(Experience::class);
-    }
-
-    /**
-     * Get the dependents for the candidate.
-     */
-    public function dependents()
-    {
-        return $this->hasMany(Dependent::class);
-    }
-
-    /**
-     * Get the resumes for the candidate.
-     */
-    public function resumes()
-    {
-        return $this->hasMany(Resume::class);
-    }
 }

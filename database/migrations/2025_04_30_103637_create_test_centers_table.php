@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('test_center', function (Blueprint $table) {
+        Schema::create('test_centers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
             $table->string('email', 255);

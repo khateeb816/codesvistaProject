@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-{
-    Schema::create('visa_issuing_authorites', function (Blueprint $table) {
+    public function up(): void
+    {
+        Schema::create('visa_issuing_authorities', function (Blueprint $table) {
         $table->id();
         $table->string('name', 100)->nullable();
         $table->timestamps();

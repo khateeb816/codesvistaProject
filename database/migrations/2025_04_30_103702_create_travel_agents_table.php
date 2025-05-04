@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-{
-    Schema::create('traval_agents', function (Blueprint $table) {
+    public function up(): void
+    {
+        Schema::create('travel_agents', function (Blueprint $table) {
         $table->id();
         $table->string('code', 10)->nullable();
         $table->string('name', 100);
         $table->string('location', 100);
-        $table->string('arlines_deals_with', 100)->nullable();
+        $table->string('airlines_deals_with', 100)->nullable();
         $table->string('secondary_email', 100)->nullable();
         $table->string('secondary_phone', 15)->nullable();
         $table->string('primary_email', 100)->nullable();

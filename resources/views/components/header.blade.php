@@ -30,8 +30,49 @@
     <!-- Custom Theme Style -->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet">
-    <script src="cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset('assets/js/fastclick.js') }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset('assets/js/nprogress.js') }}"></script>
+    <!-- Chart.js -->
+    <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+    <!-- gauge.js -->
+    <script src="{{ asset('assets/js/gauge.min.js') }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset('assets/js/bootstrap-progressbar.min.js') }}"></script>
+    <!-- iCheck -->
+    <script src="{{ asset('assets/js/icheck.min.js') }}"></script>
+    <!-- Skycons -->
+    <script src="{{ asset('assets/js/skycons.js') }}"></script>
+    <!-- Flot -->
+    <script src="{{ asset('assets/js/jquery.flot.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flot.stack.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flot.orderBars.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flot.spline.min.js') }}"></script>
+    <script src="{{ asset('assets/js/curvedLines.js') }}"></script>
+    <!-- DateJS -->
+    <script src="{{ asset('assets/js/date.js') }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset('assets/js/jquery.vmap.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/daterangepicker.js') }}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+
 <style>
   .title_bg_color{
     background-color: #2A3F54 !important;
@@ -50,14 +91,14 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="border-0"><img src="./images/logo.jpg" alt="" width="30"></i> <span>Cm Name</span></a>
+              <a href="{{ url('/') }}" class="site_title"><i class="border-0"><img src="{{ asset('images/logo.jpg') }}" alt="" width="30"></i> <span>Cm Name</span></a>
             </div>
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="{{ asset('images/img.jpg') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -75,10 +116,10 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Admin Area <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="./">Dashboard</a></li>
+                      <li><a href="{{ url('/') }}">Dashboard</a></li>
                       <li><a href="{{ route('users') }}">Manage Users</a></li>
                       <li><a href="{{ route('roles') }}">Manage Role</a></li>
-                      <li><a href="./manage_users_log.php">User Log</a></li>
+                      <li><a href="{{ url('manage_users_log') }}">User Log</a></li>
                     </ul>
                   </li>
                   <li><a><i class=" fa fa-solid fa-gears"></i> Configuration <span class="fa fa-chevron-down"></span></a>
@@ -89,122 +130,122 @@
                       <li><a href="{{ route('visaCategories') }}">Visa Categories</a></li>
                       <li><a href="{{ route('educationCategories') }}">Education Categories</a></li>
                       <li><a href="{{ route('jobCategories') }}">Job Categories</a></li>
-                      <li><a href="sub_categories.php">Sub Categories</a></li>
-                      <li><a href="./working_categories.php">Workings Categories</a></li>
-                      <li><a href="./visa_issuing_authorities.php">Visa Issuing Authorities </a></li>
-                      <li><a href="./verifying_instruction.php">Verifying Instruction </a></li>
-                      <li><a href="./add_test_center.php">Add Test Center </a></li>
-                      <li><a href="./add_medical_centers.php">Add Medical Centers </a></li>
-                      <li><a href="./test_type.php">Add Test Type</a></li>
-                      <li><a href="./age_range.php">Age Range</a></li>
-                      <li><a href="./salary_range.php">Salary Range</a></li>
-                      <li><a href="./experience_range.php">Experiance Range</a></li>
+                      <li><a href="{{ url('sub_categories') }}">Sub Categories</a></li>
+                      <li><a href="{{ url('working_categories') }}">Workings Categories</a></li>
+                      <li><a href="{{ url('visa_issuing_authorities') }}">Visa Issuing Authorities </a></li>
+                      <li><a href="{{ url('verifying_instruction') }}">Verifying Instruction </a></li>
+                      <li><a href="{{ url('add_test_center') }}">Add Test Center </a></li>
+                      <li><a href="{{ url('add_medical_centers') }}">Add Medical Centers </a></li>
+                      <li><a href="{{ url('test_type') }}">Add Test Type</a></li>
+                      <li><a href="{{ url('age_range') }}">Age Range</a></li>
+                      <li><a href="{{ url('salary_range') }}">Salary Range</a></li>
+                      <li><a href="{{ route('experienceRanges') }}">Experiance Range</a></li>
                       <li><a href="{{ route('airlines') }}">Airlines</a></li>
-                      <li><a href="./visa_profession.php">Visa Profession</a></li>
-                      <li><a href="./sectors.php">Sectors/ Instruction</a></li>
-                      <li><a href="./skills.php">Skills</a></li>
-                      <li><a href="./cites.php">Cities</a></li>
-                      <li><a href="./education_level.php">Education Level</a></li>
-                      <li><a href="./carrer_level.php">Carrer Level</a></li>
+                      <li><a href="{{ url('visa_profession') }}">Visa Profession</a></li>
+                      <li><a href="{{ url('sectors') }}">Sectors/ Instruction</a></li>
+                      <li><a href="{{ url('skills') }}">Skills</a></li>
+                      <li><a href="{{ url('cities') }}">Cities</a></li>
+                      <li><a href="{{ url('education_level') }}">Education Level</a></li>
+                      <li><a href="{{ url('carrer_level') }}">Carrer Level</a></li>
                     </ul>
                   </li>
                   <li><a><i class=" fa fa-solid fa-gears"></i>Employer Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="./employer_setup.php">Employer Setup</a></li>
-                      <li><a href="./employer_plans.php">Employer Plans</a></li>
-                      <li><a href="./job_setup.php">job setup</a></li>
-                      <li><a href="./report_manager.php">Report Manager(EM)</a></li>
-                      <li><a href="./employer_ledger.php">Employer Ledger</a></li>
-                      <li><a href="./job_grouping.php">Job Grouping for prints</a></li>
-                      <li><a href="status_job.php">Status of jobs Report</a></li>
-                      <li><a href="./security_fee.php">Security Fee Refund prints</a></li>
-                      <li><a href="./travel_agent.php">Travel Agent Ledger </a></li>
+                      <li><a href="{{ url('employer_setup') }}">Employer Setup</a></li>
+                      <li><a href="{{ url('employer_plans') }}">Employer Plans</a></li>
+                      <li><a href="{{ url('job_setup') }}">job setup</a></li>
+                      <li><a href="{{ url('report_manager') }}">Report Manager(EM)</a></li>
+                      <li><a href="{{ url('employer_ledger') }}">Employer Ledger</a></li>
+                      <li><a href="{{ url('job_grouping') }}">Job Grouping for prints</a></li>
+                      <li><a href="{{ url('status_job') }}">Status of jobs Report</a></li>
+                      <li><a href="{{ url('security_fee') }}">Security Fee Refund prints</a></li>
+                      <li><a href="{{ url('travel_agent') }}">Travel Agent Ledger </a></li>
 
                     </ul>
                     <li><a><i class=" fa fa-solid fa-gears"></i>candidate Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('initialRegistration') }}">initial Registration</a></li>
                       <li><a href="{{ route('finalRegistration') }}">Candidate Final Registration</a></li>
-                      <li><a href="./job_setup.php">Apply Jobs</a></li>
-                      <li><a href="./report_manager.php">Shortlisting</a></li>
-                      <li><a href="./employer_ledger.php">Shortlisted Candidates</a></li>
-                      <li><a href="./job_grouping.php">Online Applications</a></li>
-                      <li><a href="status_job.php">Job Applications</a></li>
-                      <li><a href="./security_fee.php">Freeze Applications</a></li>
-                      <li><a href="./travel_agent.php">Completed Applications </a></li>
-                      <li><a href="./employer_setup.php">initial Registration</a></li>
-                      <li><a href="./employer_plans.php">Candidate Final Registration</a></li>
-                      <li><a href="./job_setup.php">Apply Jobs</a></li>
-                      <li><a href="./report_manager.php">Shortlisting</a></li>
-                      <li><a href="./employer_ledger.php">Shortlisted Candidates</a></li>
-                      <li><a href="./job_grouping.php">Online Applications</a></li>
-                      <li><a href="status_job.php">Job Applications</a></li>
-                      <li><a href="./security_fee.php">Freeze Applications</a></li>
-                      <li><a href="./travel_agent.php">Completed Applications </a></li>
-                      <li><a href="status_job.php">Job Applications</a></li>
-                      <li><a href="./security_fee.php">Freeze Applications</a></li>
-                      <li><a href="./travel_agent.php">Completed Applications </a></li>
+                      <li><a href="{{ url('job_setup') }}">Apply Jobs</a></li>
+                      <li><a href="{{ url('report_manager') }}">Shortlisting</a></li>
+                      <li><a href="{{ url('employer_ledger') }}">Shortlisted Candidates</a></li>
+                      <li><a href="{{ url('job_grouping') }}">Online Applications</a></li>
+                      <li><a href="{{ url('status_job') }}">Job Applications</a></li>
+                      <li><a href="{{ url('security_fee') }}">Freeze Applications</a></li>
+                      <li><a href="{{ url('travel_agent') }}">Completed Applications </a></li>
+                      <li><a href="{{ url('employer_setup') }}">initial Registration</a></li>
+                      <li><a href="{{ url('employer_plans') }}">Candidate Final Registration</a></li>
+                      <li><a href="{{ url('job_setup') }}">Apply Jobs</a></li>
+                      <li><a href="{{ url('report_manager') }}">Shortlisting</a></li>
+                      <li><a href="{{ url('employer_ledger') }}">Shortlisted Candidates</a></li>
+                      <li><a href="{{ url('job_grouping') }}">Online Applications</a></li>
+                      <li><a href="{{ url('status_job') }}">Job Applications</a></li>
+                      <li><a href="{{ url('security_fee') }}">Freeze Applications</a></li>
+                      <li><a href="{{ url('travel_agent') }}">Completed Applications </a></li>
+                      <li><a href="{{ url('status_job') }}">Job Applications</a></li>
+                      <li><a href="{{ url('security_fee') }}">Freeze Applications</a></li>
+                      <li><a href="{{ url('travel_agent') }}">Completed Applications </a></li>
 
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bank"></i> Accounting & Finance <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="404.php">GChart of accounts</a></li>
-                    <li><a href="opening_balance.php">Opening Balance</a></li>
-                    <li><a href="cash_receipt.php">Cash Receipt</a></li>
-                    <li><a href="cash_payment.php">Cash payment</a></li>
-                    <li><a href="bank_reciept.php">Bank Receipt</a></li>
-                    <li><a href="bank_payment.php">Bank Payment</a></li>
-                    <li><a href="job_payment.php">job payment</a></li>
-                    <li><a href="travel_agent_payment.php">Travel  Agent payment</a></li>
-                    <li><a href="candidate.php">Candidate Receipt</a></li>
-                    <li><a href="candidate_jv.php">Candidate JV</a></li>
-                    <li><a href="expenses_against_candidate.php">Expenses Against Candidate</a></li>
-                    <li><a href="chart_account_balance.php">Chart of Account With Balance</a></li>
-                    <li><a href="cash_book.php">Cash book</a></li>
-                    <li><a href="bank_book.php">Bank Book</a></li>
-                    <li><a href="gernal_ledge.php">General Ledger</a></li>
-                    <li><a href="trail_balance.php">Trail Balance</a></li>
-                    <li><a href="account_balance.php">Account Balance</a></li>
-                    <li><a href="income_statement.php">Income Statement</a></li>
-                    <li><a href="balance_sheet.php">Balance Sheet</a></li>
-                    <li><a href="cash_flow_statement.php">Cash flow statement</a></li>
-                    <li><a href="equity_report.php">Equity Report</a></li>
+                    <li><a href="{{ url('404') }}">GChart of accounts</a></li>
+                    <li><a href="{{ url('opening_balance') }}">Opening Balance</a></li>
+                    <li><a href="{{ url('cash_receipt') }}">Cash Receipt</a></li>
+                    <li><a href="{{ url('cash_payment') }}">Cash payment</a></li>
+                    <li><a href="{{ url('bank_reciept') }}">Bank Receipt</a></li>
+                    <li><a href="{{ url('bank_payment') }}">Bank Payment</a></li>
+                    <li><a href="{{ url('job_payment') }}">job payment</a></li>
+                    <li><a href="{{ url('travel_agent_payment') }}">Travel  Agent payment</a></li>
+                    <li><a href="{{ url('candidate') }}">Candidate Receipt</a></li>
+                    <li><a href="{{ url('candidate_jv') }}">Candidate JV</a></li>
+                    <li><a href="{{ url('expenses_against_candidate') }}">Expenses Against Candidate</a></li>
+                    <li><a href="{{ url('chart_account_balance') }}">Chart of Account With Balance</a></li>
+                    <li><a href="{{ url('cash_book') }}">Cash book</a></li>
+                    <li><a href="{{ url('bank_book') }}">Bank Book</a></li>
+                    <li><a href="{{ url('gernal_ledge') }}">General Ledger</a></li>
+                    <li><a href="{{ url('trail_balance') }}">Trail Balance</a></li>
+                    <li><a href="{{ url('account_balance') }}">Account Balance</a></li>
+                    <li><a href="{{ url('income_statement') }}">Income Statement</a></li>
+                    <li><a href="{{ url('balance_sheet') }}">Balance Sheet</a></li>
+                    <li><a href="{{ url('cash_flow_statement') }}">Cash flow statement</a></li>
+                    <li><a href="{{ url('equity_report') }}">Equity Report</a></li>
                   </ul>
                 </li>
                 <div class="d-none">
                     <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="general_elements.php">General Elements</a></li>
-                        <li><a href="media_gallery.php">Media Gallery</a></li>
-                        <li><a href="typography.php">Typography</a></li>
-                        <li><a href="icons.php">Icons</a></li>
-                        <li><a href="glyphicons.php">Glyphicons</a></li>
-                        <li><a href="widgets.php">Widgets</a></li>
-                        <li><a href="invoice.php">Invoice</a></li>
-                        <li><a href="inbox.php">Inbox</a></li>
-                        <li><a href="calendar.php">Calendar</a></li>
+                        <li><a href="{{ url('general_elements') }}">General Elements</a></li>
+                        <li><a href="{{ url('media_gallery') }}">Media Gallery</a></li>
+                        <li><a href="{{ url('typography') }}">Typography</a></li>
+                        <li><a href="{{ url('icons') }}">Icons</a></li>
+                        <li><a href="{{ url('glyphicons') }}">Glyphicons</a></li>
+                        <li><a href="{{ url('widgets') }}">Widgets</a></li>
+                        <li><a href="{{ url('invoice') }}">Invoice</a></li>
+                        <li><a href="{{ url('inbox') }}">Inbox</a></li>
+                        <li><a href="{{ url('calendar') }}">Calendar</a></li>
                       </ul>
                     </li>
                     <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="tables.php">Tables</a></li>
-                        <li><a href="tables_dynamic.php">Table Dynamic</a></li>
+                        <li><a href="{{ url('tables') }}">Tables</a></li>
+                        <li><a href="{{ url('tables_dynamic') }}">Table Dynamic</a></li>
                       </ul>
                     </li>
                     <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="chartjs.php">Chart JS</a></li>
-                        <li><a href="chartjs2.php">Chart JS2</a></li>
-                        <li><a href="morisjs.php">Moris JS</a></li>
-                        <li><a href="echarts.php">ECharts</a></li>
-                        <li><a href="other_charts.php">Other Charts</a></li>
+                        <li><a href="{{ url('chartjs') }}">Chart JS</a></li>
+                        <li><a href="{{ url('chartjs2') }}">Chart JS2</a></li>
+                        <li><a href="{{ url('morisjs') }}">Moris JS</a></li>
+                        <li><a href="{{ url('echarts') }}">ECharts</a></li>
+                        <li><a href="{{ url('other_charts') }}">Other Charts</a></li>
                       </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="fixed_sidebar.php">Fixed Sidebar</a></li>
-                        <li><a href="fixed_footer.php">Fixed Footer</a></li>
+                        <li><a href="{{ url('fixed_sidebar') }}">Fixed Sidebar</a></li>
+                        <li><a href="{{ url('fixed_footer') }}">Fixed Footer</a></li>
                       </ul>
                     </li>
                   </div>
@@ -216,12 +257,12 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.php">403 Error</a></li>
-                      <li><a href="page_404.php">404 Error</a></li>
-                      <li><a href="page_500.php">500 Error</a></li>
-                      <li><a href="plain_page.php">Plain Page</a></li>
-                      <li><a href="login.php">Login Page</a></li>
-                      <li><a href="pricing_tables.php">Pricing Tables</a></li>
+                      <li><a href="{{ url('page_403') }}">403 Error</a></li>
+                      <li><a href="{{ url('page_404') }}">404 Error</a></li>
+                      <li><a href="{{ url('page_500') }}">500 Error</a></li>
+                      <li><a href="{{ url('plain_page') }}">Plain Page</a></li>
+                      <li><a href="{{ url('login') }}">Login Page</a></li>
+                      <li><a href="{{ url('pricing_tables') }}">Pricing Tables</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
@@ -229,7 +270,7 @@
                       <li><a href="#level1_1">Level One</a>
                       <li><a>Level One<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li class="sub_menu"><a href="level2.php">Level Two</a>
+                          <li class="sub_menu"><a href="{{ url('level2') }}">Level Two</a>
                           </li>
                           <li><a href="#level2_1">Level Two</a>
                           </li>
@@ -259,7 +300,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.php">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('login') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -277,7 +318,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="./images/logo.jpg" alt="">Flf Khan
+                    <img src="{{ asset('images/logo.jpg') }}" alt="">Flf Khan
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="javascript:;"> Profile</a>
@@ -286,7 +327,7 @@
                       <span>Settings</span>
                     </a>
                     <a class="dropdown-item" href="javascript:;">Help</a>
-                    <a class="dropdown-item" href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item" href="{{ url('login') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
@@ -298,7 +339,7 @@
                   <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                     <li class="nav-item">
                       <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="{{ asset('images/img.jpg') }}" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -310,7 +351,7 @@
                     </li>
                     <li class="nav-item">
                       <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="{{ asset('images/img.jpg') }}" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -322,7 +363,7 @@
                     </li>
                     <li class="nav-item">
                       <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="{{ asset('images/img.jpg') }}" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -334,7 +375,7 @@
                     </li>
                     <li class="nav-item">
                       <a class="dropdown-item">
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="{{ asset('images/img.jpg') }}" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
