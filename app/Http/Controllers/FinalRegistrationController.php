@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Candidate;
-use App\Models\ExperienceRange;
 use Illuminate\Http\Request;
+use App\Models\ExperienceRange;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class FinalRegistrationController extends Controller
 {
@@ -454,11 +455,11 @@ class FinalRegistrationController extends Controller
     {
         $candidate = Candidate::findOrFail($id);
         $candidate->delete();
-        return redirect()->route('finalRegistration');
+        return redirect()->route('finalRegistration')->with('success', 'Candidate deleted successfully!');
     }
     public function show($id)
     {
-        $candidate = Candidate::findOrFail($id);
+        $candidate = Candidate::with('jobs')->findOrFail($id);
         $qualifications = (array) json_decode($candidate->qualification, true);
         $professionalQualifications = (array) json_decode($candidate->professional_qualification, true);
         $professionalExperience = (array) json_decode($candidate->professional_experience, true);

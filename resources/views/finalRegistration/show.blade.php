@@ -90,6 +90,113 @@
     .btn-download {
         margin-left: 15px;
     }
+
+    .action-buttons {
+        margin-bottom: 20px;
+        text-align: right;
+    }
+
+    .action-buttons .btn {
+        margin-left: 10px;
+    }
+
+    .job-card {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .job-card:hover {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .job-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .job-company {
+        color: #34495e;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .job-details {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .job-status {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .status-applied {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .status-pending {
+        background-color: #fff3e0;
+        color: #ef6c00;
+    }
+
+    .status-rejected {
+        background-color: #ffebee;
+        color: #c62828;
+    }
+
+    .modal-header {
+        background-color: #1f2d3d;
+        color: #fff;
+        border-radius: 4px 4px 0 0;
+    }
+
+    .modal-title {
+        font-weight: 600;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-weight: 500;
+        color: #2c3e50;
+    }
+
+    .form-control {
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+    }
+
+    .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    .modal-footer {
+        border-top: 1px solid #eee;
+        padding: 15px 20px;
+    }
+
+    .btn-close {
+        color: #fff;
+    }
 </style>
 
 <!-- Candidate Details View -->
@@ -98,9 +205,27 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Candidate Details</h2>
+
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#applyJobModal">
+                        <i class="fa fa-briefcase"></i> Apply for Job
+                    </button>
+                </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <!-- Basic Info Box -->
                 <div class="info-box">
                     <div class="info-box-header">
@@ -443,13 +568,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($qualifications as $qualification)
+                                @if (isset($qualifications) && count($qualifications) > 0)
+                                    @foreach ($qualifications as $qualification)
+                                        <tr>
+                                            <td>{{ $qualification['duration'] }}</td>
+                                            <td>{{ $qualification['degree'] }}</td>
+                                            <td>{{ $qualification['institute'] }}</td>
+                                        </tr>
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td>{{ $qualification['duration'] }}</td>
-                                        <td>{{ $qualification['degree'] }}</td>
-                                        <td>{{ $qualification['institute'] }}</td>
+                                        <td colspan="3" class="text-center">No qualifications found</td>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -496,7 +627,8 @@
                                 @foreach ($professionalExperience as $experience)
                                     <tr>
                                         <td>{{ $experience['company'] }}</td>
-                                        <td>{{ $experience['main_category'] }}{{ isset($experience['sub_category']) ? ' - ' . $experience['sub_category'] : '' }}</td>
+                                        <td>{{ $experience['main_category'] }}{{ isset($experience['sub_category']) ? ' - ' . $experience['sub_category'] : '' }}
+                                        </td>
                                         <td>{{ $experience['from'] }} - {{ $experience['to'] }}</td>
                                         <td>{{ $experience['sector'] ?? 'N/A' }}</td>
                                         <td>{{ $experience['type'] ?? 'N/A' }}</td>
@@ -580,14 +712,15 @@
                     <div class="info-box-header">
                         <h3>Resumes</h3>
                     </div>
-                    @if($candidate->resume)
+                    @if ($candidate->resume)
                         <div class="file-preview">
                             <div class="file-preview-content">
                                 <i class="fa fa-file-pdf-o file-icon"></i>
                                 <div class="file-details">
                                     <span class="file-name">{{ basename($candidate->resume) }}</span>
                                 </div>
-                                <a href="{{ asset($candidate->resume) }}" class="btn btn-primary btn-download" download>
+                                <a href="{{ asset($candidate->resume) }}" class="btn btn-primary btn-download"
+                                    download>
                                     <i class="fa fa-download"></i> Download
                                 </a>
                             </div>
@@ -599,14 +732,148 @@
                     @endif
                 </div>
 
+                <!-- Jobs Box -->
+                <div class="info-box">
+                    <div class="info-box-header">
+                        <h3>Applied Jobs</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (isset($candidate->jobs) && count($candidate->jobs) > 0)
+                                <div class="container">
+                                    <div class="row">
+                                        @foreach ($candidate->jobs as $job)
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Title: {{ $job->title }}</h5>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Company:
+                                                            {{ $job->company }}</h6>
+                                                        <p class="card-text">
+                                                            <i class="fa fa-map-marker"></i> Location:
+                                                            {{ $job->location }}
+                                                        </p>
+                                                        <div class="form-group">
+                                                            <label for="status_{{ $job->id }}">Status:</label>
+                                                            <select name="status" class="form-control"
+                                                                id="status_{{ $job->id }}">
+                                                                <option value="Applied"
+                                                                    {{ $job->status == 'Applied' ? 'selected' : '' }}>
+                                                                    Applied</option>
+                                                                <option value="Interview"
+                                                                    {{ $job->status == 'Interview' ? 'selected' : '' }}>
+                                                                    Interview</option>
+                                                                <option value="Hired"
+                                                                    {{ $job->status == 'Hired' ? 'selected' : '' }}>
+                                                                    Hired</option>
+                                                                <option value="Rejected"
+                                                                    {{ $job->status == 'Rejected' ? 'selected' : '' }}>
+                                                                    Rejected</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer d-flex justify-content-between">
+                                                        <form action="{{ route('job.update', $job->id) }}"
+                                                            id="updateJobForm_{{ $job->id }}" method="POST"
+                                                            class="d-inline"
+                                                            onsubmit="event.preventDefault(); updateJobStatus({{ $job->id }});">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status"
+                                                                id="new_status_{{ $job->id }}"
+                                                                value="{{ $job->status }}">
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-sm">Update</button>
+                                                        </form>
+                                                        <form action="{{ route('job.destroy', $job->id) }}"
+                                                            method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function updateJobStatus(jobId) {
+                                        // Get the selected dropdown value
+                                        const selectedStatus = document.getElementById('status_' + jobId).value;
+                                        // Set the hidden input value
+                                        document.getElementById('new_status_' + jobId).value = selectedStatus;
+                                        // Submit the form
+                                        document.getElementById('updateJobForm_' + jobId).submit();
+                                    }
+                                </script>
+                            @else
+                                <div class="alert alert-info">
+                                    <i class="fa fa-info-circle"></i> No jobs applied yet. Click the "Apply for Job"
+                                    button to start applying.
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <a href="{{ route('finalRegistration.edit', $candidate->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('finalRegistration.edit', $candidate->id) }}"
+                            class="btn btn-primary">Edit</a>
                         <a href="{{ route('finalRegistration') }}" class="btn btn-default">Back</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Apply Job Modal -->
+<div class="modal fade" id="applyJobModal" tabindex="-1" aria-labelledby="applyJobModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applyJobModalLabel">Apply for Job</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="applyJobForm" action="{{ route('job.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="title">Job Title</label>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" class="form-control" id="company" name="company" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" id="location" name="location" required>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

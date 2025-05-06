@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\AirlinesController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EducationCategoryController;
-use App\Http\Controllers\ExperienceRangeController;
-use App\Http\Controllers\FinalRegistrationController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InitialRegistrationController;
-use App\Http\Controllers\JobCategoryController;
-use App\Http\Controllers\PaymentAgentController;
-use App\Http\Controllers\RecruitmentAgentController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\TravelAgentController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VisaCategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AirlinesController;
+use App\Http\Controllers\JobCategoryController;
+use App\Http\Controllers\TravelAgentController;
+use App\Http\Controllers\PaymentAgentController;
+use App\Http\Controllers\VisaCategoryController;
+use App\Http\Controllers\ExperienceRangeController;
+use App\Http\Controllers\RecruitmentAgentController;
+use App\Http\Controllers\EducationCategoryController;
+use App\Http\Controllers\FinalRegistrationController;
+use App\Http\Controllers\InitialRegistrationController;
 
 
 Route::get('/', [HomeController::class , 'index'])->middleware('auth');
@@ -104,3 +105,7 @@ Route::post('/experienceRanges' , [ExperienceRangeController::class , 'store'])-
 Route::get('/experienceRanges/{id}' , [ExperienceRangeController::class , 'edit'])->name('experienceRanges.edit');
 Route::put('/experienceRanges/{id}' , [ExperienceRangeController::class , 'update'])->name('experienceRanges.update');
 Route::delete('/experienceRanges/{id}' , [ExperienceRangeController::class , 'destroy'])->name('experienceRanges.destroy');
+
+Route::post('/job/store', [JobController::class, 'store'])->name('job.store');
+Route::put('/job/update/{id}', [JobController::class, 'update'])->name('job.update');
+Route::delete('/job/delete/{id}', [JobController::class, 'destroy'])->name('job.destroy');
