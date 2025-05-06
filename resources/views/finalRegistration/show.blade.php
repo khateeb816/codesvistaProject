@@ -205,12 +205,6 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Candidate Details</h2>
-
-                <div class="action-buttons">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#applyJobModal">
-                        <i class="fa fa-briefcase"></i> Apply for Job
-                    </button>
-                </div>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -734,8 +728,13 @@
 
                 <!-- Jobs Box -->
                 <div class="info-box">
-                    <div class="info-box-header">
-                        <h3>Applied Jobs</h3>
+                    <div class="info-box-header d-flex align-items-center justify-content-between">
+                        <h3 class="">Applied Jobs</h3>
+                        <div class="action-buttons mt-2">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#applyJobModal">
+                                <i class="fa fa-briefcase"></i> Apply for Job
+                            </button>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -819,6 +818,121 @@
                         </div>
                     </div>
                 </div>
+                <!-- Jobs Box -->
+                <div class="info-box">
+                    <div class="info-box-header d-flex align-items-center justify-content-between">
+                        <h3 class="">Medical Process</h3>
+                        <div class="action-buttons mt-2">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#medicalProcessModal">
+                                <i class="fa fa-briefcase"></i> Add Medical Record
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (isset($candidate->medicalRecords) && count($candidate->medicalRecords) > 0)
+                            <div class="container">
+                                <div class="row">
+                                    @foreach ($candidate->medicalRecords as $record)
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card h-100">
+                                                <form action="{{ route('medicalRecords.update', $record->id) }}"
+                                                    id="updateMedicalForm_{{ $record->id }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Medical Center: {{ $record->medical_center }}</h5>
+                        
+                                                        <div class="form-group">
+                                                            <label for="status_{{ $record->id }}">Status:</label>
+                                                            <select name="status" class="form-control" id="status_{{ $record->id }}">
+                                                                <option value="Pending" {{ $record->status == 'Pending' ? 'selected' : '' }}>
+                                                                    Pending
+                                                                </option>
+                                                                <option value="Completed" {{ $record->status == 'Completed' ? 'selected' : '' }}>
+                                                                    Completed
+                                                                </option>
+                                                                <option value="Failed" {{ $record->status == 'Failed' ? 'selected' : '' }}>
+                                                                    Failed
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                        
+                                                        <div class="form-group">
+                                                            <label for="notes_{{ $record->id }}">Notes:</label>
+                                                            <textarea name="notes" class="form-control"
+                                                                      id="notes_{{ $record->id }}">{{ $record->notes }}</textarea>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="card-footer d-flex justify-content-between">
+                                                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                                </form>
+                        
+                                                <form action="{{ route('medicalRecords.destroy', $record->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @else
+                            <div class="alert alert-info">
+                                <i class="fa fa-info-circle"></i> No medical records yet. Click the "Add Medical Record"
+                                button to start adding.
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <!-- Medical Record Modal -->
+                <div class="modal fade" id="medicalProcessModal" tabindex="-1" aria-labelledby="medicalProcessModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="medicalProcessModalLabel">Add Medical Record</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('medicalRecords.store') }}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                    <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                                    <div class="form-group">
+                                        <select name="medical_center" id="medical_center" class="form-control">
+                                            <option value="">Select Medical Center</option>
+                                            @foreach ($medicalCenters as $medicalCenter)
+                                                <option value="{{ $medicalCenter->name }}">{{ $medicalCenter->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="notes">Notes</label>
+                                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add Medical Record</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function updateMedicalStatus(recordId) {
+                        // Get the selected dropdown value
+                        const selectedStatus = document.getElementById('status_' + recordId).value;
+                        // Set the hidden input value
+                        document.getElementById('new_status_' + recordId).value = selectedStatus;
+                        // Submit the form
+                        document.getElementById('updateMedicalForm_' + recordId).submit();
+                    }
+                </script>
 
                 <div class="ln_solid"></div>
                 <div class="form-group">

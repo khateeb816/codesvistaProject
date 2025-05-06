@@ -212,7 +212,7 @@
                       <li><a href="{{ url('visa_issuing_authorities') }}">Visa Issuing Authorities </a></li>
                       <li><a href="{{ url('verifying_instruction') }}">Verifying Instruction </a></li>
                       <li><a href="{{ url('add_test_center') }}">Add Test Center </a></li>
-                      <li><a href="{{ url('add_medical_centers') }}">Add Medical Centers </a></li>
+                      <li><a href="{{ route('medicalCenters') }}">Add Medical Centers </a></li>
                       <li><a href="{{ url('test_type') }}">Add Test Type</a></li>
                       <li><a href="{{ url('age_range') }}">Age Range</a></li>
                       <li><a href="{{ url('salary_range') }}">Salary Range</a></li>

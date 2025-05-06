@@ -86,4 +86,8 @@ class Candidate extends Model
         return $this->hasMany(JobCandidate::class);
     }
 
+    public function medicalRecords()
+    {
+        return $this->hasMany(MedicalRecord::class);
+    }
 }

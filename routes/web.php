@@ -1,21 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\JobController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AirlinesController;
-use App\Http\Controllers\JobCategoryController;
-use App\Http\Controllers\TravelAgentController;
-use App\Http\Controllers\PaymentAgentController;
-use App\Http\Controllers\VisaCategoryController;
-use App\Http\Controllers\ExperienceRangeController;
-use App\Http\Controllers\RecruitmentAgentController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EducationCategoryController;
+use App\Http\Controllers\ExperienceRangeController;
 use App\Http\Controllers\FinalRegistrationController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InitialRegistrationController;
+use App\Http\Controllers\JobCategoryController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\MedicalCenterController;
+use App\Http\Controllers\MedicalRecordController;
+use App\Http\Controllers\PaymentAgentController;
+use App\Http\Controllers\RecruitmentAgentController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TravelAgentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisaCategoryController;
+use Illuminate\Support\Facades\Route;
+
+
 
 
 Route::get('/', [HomeController::class , 'index'])->middleware('auth');
@@ -36,6 +40,11 @@ Route::post('/users' , [UserController::class , 'store'])->name('users.store');
 Route::get('/users/{id}' , [UserController::class , 'edit'])->name('users.edit');
 Route::put('/users/{id}' , [UserController::class , 'update'])->name('users.update');
 Route::delete('/users/{id}' , [UserController::class , 'destroy'])->name('users.destroy');
+
+// Medical Records Routes
+Route::post('/medical-records' , [MedicalRecordController::class , 'store'])->name('medicalRecords.store');
+Route::put('/medical-records/{id}' , [MedicalRecordController::class , 'update'])->name('medicalRecords.update');
+Route::delete('/medical-records/{id}' , [MedicalRecordController::class , 'destroy'])->name('medicalRecords.destroy');
 
 Route::get('/roles' , [RoleController::class , 'index'])->name('roles');
 Route::get('/roles/add' , [RoleController::class , 'add'])->name('roles.add');
@@ -85,6 +94,12 @@ Route::post('/airlines' , [AirlinesController::class , 'store'])->name('airlines
 Route::get('/airlines/{id}' , [AirlinesController::class , 'edit'])->name('airlines.edit');
 Route::put('/airlines/{id}' , [AirlinesController::class , 'update'])->name('airlines.update');
 Route::delete('/airlines/{id}' , [AirlinesController::class , 'destroy'])->name('airlines.destroy');
+
+Route::get('/medicalCenters' , [MedicalCenterController::class , 'index'])->name('medicalCenters');
+Route::post('/medicalCenters' , [MedicalCenterController::class , 'store'])->name('medicalCenters.store');
+Route::get('/medicalCenters/{id}' , [MedicalCenterController::class , 'edit'])->name('medicalCenters.edit');
+Route::put('/medicalCenters/{id}' , [MedicalCenterController::class , 'update'])->name('medicalCenters.update');
+Route::delete('/medicalCenters/{id}' , [MedicalCenterController::class , 'destroy'])->name('medicalCenters.destroy');
 
 Route::get('/initialRegistrations' , [InitialRegistrationController::class , 'index'])->name('initialRegistration');
 Route::post('/initialRegistrations' , [InitialRegistrationController::class , 'store'])->name('initialRegistration.store');
