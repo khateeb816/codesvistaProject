@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="{{ url('/') }}/">
     <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/ico" />
 
     <title>Hai Company</title>
@@ -33,26 +34,37 @@
     <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- jQuery -->
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        if (typeof jQuery === 'undefined') {
+            document.write('<script src="{{ asset('assets/js/jquery.min.js') }}"><\/script>');
+        }
+    </script>
 
     <!-- Bootstrap -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- FastClick -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        if (typeof bootstrap === 'undefined') {
+            document.write('<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"><\/script>');
+        }
+    </script>
+
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+        if (typeof $.fn.DataTable === 'undefined') {
+            document.write('<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"><\/script>');
+        }
+    </script>
+
+    <!-- Other Scripts -->
     <script src="{{ asset('assets/js/fastclick.js') }}"></script>
-    <!-- NProgress -->
     <script src="{{ asset('assets/js/nprogress.js') }}"></script>
-    <!-- Chart.js -->
     <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
-    <!-- gauge.js -->
     <script src="{{ asset('assets/js/gauge.min.js') }}"></script>
-    <!-- bootstrap-progressbar -->
     <script src="{{ asset('assets/js/bootstrap-progressbar.min.js') }}"></script>
-    <!-- iCheck -->
     <script src="{{ asset('assets/js/icheck.min.js') }}"></script>
-    <!-- Skycons -->
     <script src="{{ asset('assets/js/skycons.js') }}"></script>
-    <!-- Flot -->
     <script src="{{ asset('assets/js/jquery.flot.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flot.pie.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flot.time.js') }}"></script>
@@ -61,17 +73,14 @@
     <script src="{{ asset('assets/js/jquery.flot.orderBars.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.flot.spline.min.js') }}"></script>
     <script src="{{ asset('assets/js/curvedLines.js') }}"></script>
-    <!-- DateJS -->
     <script src="{{ asset('assets/js/date.js') }}"></script>
-    <!-- JQVMap -->
     <script src="{{ asset('assets/js/jquery.vmap.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
-    <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('assets/js/moment.min.js') }}"></script>
     <script src="{{ asset('assets/js/daterangepicker.js') }}"></script>
+
     <!-- Custom Theme Scripts -->
-    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
 
 <style>
   .title_bg_color{
@@ -81,6 +90,74 @@
   .title_bg_color ul{
     /* background-color: red; */
     margin-top: 4px !important;
+  }
+
+  /* Menu Toggle Styles */
+  #menu_toggle {
+    cursor: pointer;
+    display: block;
+    padding: 15px;
+    color: #333;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    transition: all 0.3s ease;
+  }
+
+  #menu_toggle:hover {
+    color: #2A3F54;
+    transform: scale(1.1);
+  }
+
+  .nav-md .left_col {
+    width: 230px;
+    transition: width 0.3s ease;
+  }
+
+  .nav-sm .left_col {
+    width: 70px;
+    transition: width 0.3s ease;
+  }
+
+  .nav-md .right_col {
+    margin-left: 230px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .nav-sm .right_col {
+    margin-left: 70px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .nav-md .sidebar-footer {
+    display: block;
+  }
+
+  .nav-sm .sidebar-footer {
+    display: none;
+  }
+
+  .nav-md .nav.child_menu {
+    display: block;
+  }
+
+  .nav-sm .nav.child_menu {
+    display: none;
+  }
+
+  .nav-sm .nav.child_menu li.active {
+    display: block;
+  }
+
+  .nav-sm .nav.child_menu li.active ul {
+    display: block;
+  }
+
+  /* Add active state for menu toggle */
+  #menu_toggle.active {
+    color: #2A3F54;
+    transform: rotate(90deg);
   }
 </style>
   </head>
@@ -312,7 +389,9 @@
         <div class="top_nav">
           <div class="nav_menu">
             <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              <button id="menu_toggle" class="btn btn-link" type="button">
+                <i class="fa fa-bars"></i>
+              </button>
             </div>
             <nav class="nav navbar-nav">
               <ul class=" navbar-right">

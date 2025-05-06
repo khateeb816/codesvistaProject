@@ -263,7 +263,7 @@
 </style>
 
 <!-- Candidate Registration Form -->
-<div   role="main">
+<div role="main">
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">

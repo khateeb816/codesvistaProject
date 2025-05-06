@@ -92,10 +92,12 @@ Route::put('/initialRegistrations/{id}' , [InitialRegistrationController::class 
 Route::delete('/initialRegistrations/{id}' , [InitialRegistrationController::class , 'destroy'])->name('initialRegistration.destroy');
 
 Route::get('/finalRegistrations' , [FinalRegistrationController::class , 'index'])->name('finalRegistration');
+Route::get('/finalRegistrations/create' , [FinalRegistrationController::class , 'create'])->name('finalRegistration.create');
 Route::post('/finalRegistrations' , [FinalRegistrationController::class , 'store'])->name('finalRegistration.store');
-Route::get('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'edit'])->name('finalRegistration.edit');
+Route::get('/finalRegistrations/{id}/edit' , [FinalRegistrationController::class , 'edit'])->name('finalRegistration.edit');
 Route::put('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'update'])->name('finalRegistration.update');
 Route::delete('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'destroy'])->name('finalRegistration.destroy');
+Route::get('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'show'])->name('finalRegistration.show');
 
 Route::get('/experienceRanges' , [ExperienceRangeController::class , 'index'])->name('experienceRanges');
 Route::post('/experienceRanges' , [ExperienceRangeController::class , 'store'])->name('experienceRanges.store');

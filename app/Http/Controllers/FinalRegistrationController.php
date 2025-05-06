@@ -15,6 +15,11 @@ class FinalRegistrationController extends Controller
         $experiences = ExperienceRange::all();
         return view('finalRegistration.index' , compact('candidates' , 'experiences'));
     }
+    public function create()
+    {
+        $experiences = ExperienceRange::all();
+        return view('finalRegistration.add' , compact('experiences'));
+    }
     public function store(Request $request)
     {
         // Validate the request
@@ -450,5 +455,14 @@ class FinalRegistrationController extends Controller
         $candidate = Candidate::findOrFail($id);
         $candidate->delete();
         return redirect()->route('finalRegistration');
+    }
+    public function show($id)
+    {
+        $candidate = Candidate::findOrFail($id);
+        $qualifications = (array) json_decode($candidate->qualification, true);
+        $professionalQualifications = (array) json_decode($candidate->professional_qualification, true);
+        $professionalExperience = (array) json_decode($candidate->professional_experience, true);
+        $dependents = (array) json_decode($candidate->dependents, true);
+        return view('finalRegistration.show', compact('candidate', 'qualifications', 'professionalQualifications', 'professionalExperience', 'dependents'));
     }
 }
