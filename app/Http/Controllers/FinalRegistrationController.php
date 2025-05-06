@@ -462,11 +462,38 @@ class FinalRegistrationController extends Controller
     public function show($id)
     {
         $medicalCenters = MedicalCenter::all();
-        $candidate = Candidate::with('jobs')->findOrFail($id);
+        $candidate = Candidate::with('jobs', 'navttc')->findOrFail($id);
         $qualifications = (array) json_decode($candidate->qualification, true);
         $professionalQualifications = (array) json_decode($candidate->professional_qualification, true);
         $professionalExperience = (array) json_decode($candidate->professional_experience, true);
         $dependents = (array) json_decode($candidate->dependents, true);
         return view('finalRegistration.show', compact('candidate', 'qualifications', 'professionalQualifications', 'professionalExperience', 'dependents', 'medicalCenters'));
     }
+    public function storeENumber(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'e_number' => 'required',
+        ]);
+
+        $candidate = Candidate::findOrFail($request->candidate_id);
+        $candidate->e_number = $request->e_number;
+        $candidate->save();
+
+        return redirect()->back()->with('success', 'E Number added successfully!');
+    }
+    public function changeStatus(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'status' => 'required',
+        ]);
+
+        $candidate = Candidate::findOrFail($request->candidate_id);
+        $candidate->status = $request->status;
+        $candidate->save();
+
+        return redirect()->back()->with('success', 'Status changed successfully!');
+    }
+    
 }

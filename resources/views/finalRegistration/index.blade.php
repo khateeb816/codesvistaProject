@@ -90,10 +90,10 @@
                                 <thead>
                                     <tr>
                                         <th>Candidate No</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
+                                        <th>Name</th>
                                         <th>Mobile</th>
-                                        <th>Experience</th>
+                                        <th>E - Number</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -101,10 +101,30 @@
                                     @foreach ($candidates as $candidate)
                                         <tr>
                                             <td>{{ $candidate->id }}</td>
-                                            <td>{{ $candidate->first_name }}</td>
-                                            <td>{{ $candidate->last_name }}</td>
+                                            <td>{{ $candidate->first_name . ' ' . $candidate->last_name }}</td>
                                             <td>{{ $candidate->mobile }}</td>
-                                            <td>{{ $candidate->experience }}</td>
+                                            <td>{{ $candidate->e_number ?? 'Not Issued' }}</td>
+                                            <td>
+                                                <form id="changeStatusForm_{{ $candidate->id }}" action="{{ route('finalRegistration.changeStatus', $candidate->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                                                
+                                                    <input type="hidden" name="status" id="hiddenStatus_{{ $candidate->id }}">
+                                                
+                                                    <select class="form-control" onchange="changeStatus({{ $candidate->id }})" id="statusSelect_{{ $candidate->id }}">
+                                                        <option value="Pending" {{ $candidate->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                        <option value="CV Collected" {{ $candidate->status == 'CV Collected' ? 'selected' : '' }}>CV Collected</option>
+                                                        <option value="CV Sent for Approval" {{ $candidate->status == 'CV Sent for Approval' ? 'selected' : '' }}>CV Sent for Approval</option>
+                                                        <option value="Trade Test Scheduled" {{ $candidate->status == 'Trade Test Scheduled' ? 'selected' : '' }}>Trade Test Scheduled</option>
+                                                        <option value="Medical Process Started" {{ $candidate->status == 'Medical Process Started' ? 'selected' : '' }}>Medical Process Started</option>
+                                                        <option value="NAVTTC Test Scheduled" {{ $candidate->status == 'NAVTTC Test Scheduled' ? 'selected' : '' }}>NAVTTC Test Scheduled</option>
+                                                        <option value="E-Number Issued" {{ $candidate->status == 'E-Number Issued' ? 'selected' : '' }}>E-Number Issued</option>
+                                                        <option value="Case Submitted to Embassy" {{ $candidate->status == 'Case Submitted to Embassy' ? 'selected' : '' }}>Case Submitted to Embassy</option>
+                                                     </select>
+                                                </form>
+                                                
+                                            </td>
                                             <td>
                                                 <a href="{{ route('finalRegistration.edit', $candidate->id) }}"
                                                     class="btn btn-info btn-sm">
@@ -127,6 +147,14 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    <script>
+                                        function changeStatus(candidateId) {
+                                            var selectedStatus = document.getElementById('statusSelect_' + candidateId).value;
+                                            document.getElementById('hiddenStatus_' + candidateId).value = selectedStatus;
+                                            document.getElementById('changeStatusForm_' + candidateId).submit();
+                                        }
+                                    </script>
+                                    
                                 </tbody>
                             </table>
                         </div>

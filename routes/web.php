@@ -11,6 +11,7 @@ use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\MedicalCenterController;
 use App\Http\Controllers\MedicalRecordController;
+use App\Http\Controllers\NavttcController;
 use App\Http\Controllers\PaymentAgentController;
 use App\Http\Controllers\RecruitmentAgentController;
 use App\Http\Controllers\RoleController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\TravelAgentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisaCategoryController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -45,6 +47,11 @@ Route::delete('/users/{id}' , [UserController::class , 'destroy'])->name('users.
 Route::post('/medical-records' , [MedicalRecordController::class , 'store'])->name('medicalRecords.store');
 Route::put('/medical-records/{id}' , [MedicalRecordController::class , 'update'])->name('medicalRecords.update');
 Route::delete('/medical-records/{id}' , [MedicalRecordController::class , 'destroy'])->name('medicalRecords.destroy');
+
+// NAVTTC Routes
+Route::post('/navttc' , [NavttcController::class , 'store'])->name('navttc.store');
+Route::put('/navttc/{id}' , [NavttcController::class , 'update'])->name('navttc.update');
+Route::delete('/navttc/{id}' , [NavttcController::class , 'destroy'])->name('navttc.destroy');
 
 Route::get('/roles' , [RoleController::class , 'index'])->name('roles');
 Route::get('/roles/add' , [RoleController::class , 'add'])->name('roles.add');
@@ -114,6 +121,8 @@ Route::get('/finalRegistrations/{id}/edit' , [FinalRegistrationController::class
 Route::put('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'update'])->name('finalRegistration.update');
 Route::delete('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'destroy'])->name('finalRegistration.destroy');
 Route::get('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'show'])->name('finalRegistration.show');
+Route::put('/finalRegistrations/{id}/change-status' , [FinalRegistrationController::class , 'changeStatus'])->name('finalRegistration.changeStatus');
+
 
 Route::get('/experienceRanges' , [ExperienceRangeController::class , 'index'])->name('experienceRanges');
 Route::post('/experienceRanges' , [ExperienceRangeController::class , 'store'])->name('experienceRanges.store');
@@ -124,3 +133,5 @@ Route::delete('/experienceRanges/{id}' , [ExperienceRangeController::class , 'de
 Route::post('/job/store', [JobController::class, 'store'])->name('job.store');
 Route::put('/job/update/{id}', [JobController::class, 'update'])->name('job.update');
 Route::delete('/job/delete/{id}', [JobController::class, 'destroy'])->name('job.destroy');
+
+Route::post('/eNumber/store', [FinalRegistrationController::class, 'storeENumber'])->name('eNumber.store');

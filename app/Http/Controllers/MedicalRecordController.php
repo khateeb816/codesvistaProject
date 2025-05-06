@@ -13,7 +13,8 @@ class MedicalRecordController extends Controller
         $request->validate([
             'candidate_id' => 'required',
             'medical_center' => 'required',
-            'notes' => 'nullable|string'
+            'notes' => 'nullable|string',
+            
         ]);
 
         MedicalRecord::create([

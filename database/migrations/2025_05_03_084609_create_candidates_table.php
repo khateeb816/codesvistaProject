@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string('plan')->nullable();
             $table->string('place_of_birth')->nullable();
             $table->string('nationality')->nullable();
+            $table->string('e_number')->nullable();
+            $table->string('status')->default('Pending');
 
 
             //passport

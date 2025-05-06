@@ -63,6 +63,8 @@ class Candidate extends Model
         'achievements',
         'dependents',
         'resume',
+        'e_number',
+        'status',
     ];
 
     protected $casts = [
@@ -89,5 +91,10 @@ class Candidate extends Model
     public function medicalRecords()
     {
         return $this->hasMany(MedicalRecord::class);
+    }
+
+    public function navttc()
+    {
+        return $this->hasMany(Navttc::class);
     }
 }
