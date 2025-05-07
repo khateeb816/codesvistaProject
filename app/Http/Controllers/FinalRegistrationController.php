@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
+use App\Models\EmbassyDocument;
 use App\Models\ExperienceRange;
 use App\Models\MedicalCenter;
 use Illuminate\Http\Request;
@@ -462,7 +463,7 @@ class FinalRegistrationController extends Controller
     public function show($id)
     {
         $medicalCenters = MedicalCenter::all();
-        $candidate = Candidate::with('jobs', 'navttc')->findOrFail($id);
+        $candidate = Candidate::with('jobs', 'navttc', 'embassyDocument')->findOrFail($id);
         $qualifications = (array) json_decode($candidate->qualification, true);
         $professionalQualifications = (array) json_decode($candidate->professional_qualification, true);
         $professionalExperience = (array) json_decode($candidate->professional_experience, true);
@@ -494,6 +495,41 @@ class FinalRegistrationController extends Controller
         $candidate->save();
 
         return redirect()->back()->with('success', 'Status changed successfully!');
+    }
+
+    public function updateDocuments(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+        ]);
+
+        $candidate = Candidate::findOrFail($request->candidate_id);
+        
+        // Convert checkbox values (on/null) to boolean (1/0)
+        $documentData = [
+            'visa_form' => $request->has('visa_form') ? 1 : 0,
+            'waqala_paper' => $request->has('waqala_paper') ? 1 : 0,
+            'e_number_print' => $request->has('e_number_print') ? 1 : 0,
+            'company_agreement' => $request->has('company_agreement') ? 1 : 0,
+            'navttc_report' => $request->has('navttc_report') ? 1 : 0,
+            'driving_license' => $request->has('driving_license') ? 1 : 0,
+            'driving_license_undertaking' => $request->has('driving_license_undertaking') ? 1 : 0,
+            'driving_license_online_print' => $request->has('driving_license_online_print') ? 1 : 0,
+            'degree_copies' => $request->has('degree_copies') ? 1 : 0,
+            'agency_undertaking' => $request->has('agency_undertaking') ? 1 : 0,
+            'agency_license' => $request->has('agency_license') ? 1 : 0,
+            'police_certificate' => $request->has('police_certificate') ? 1 : 0,
+            'fir_newspaper' => $request->has('fir_newspaper') ? 1 : 0,
+            'medical_report' => $request->has('medical_report') ? 1 : 0
+        ];
+        
+        // Find existing document or create new one
+        EmbassyDocument::updateOrCreate(
+            ['candidate_id' => $request->candidate_id],
+            $documentData
+        );
+
+        return redirect()->back()->with('success', 'Documents updated successfully!');
     }
     
 }

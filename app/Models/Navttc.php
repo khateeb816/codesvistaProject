@@ -13,7 +13,15 @@ class Navttc extends Model
         'status',
         'start_date',
         'end_date',
-        'notes'
+        'notes',
+        'mobile_number',
+        'occupation_name_arabic',
+        'occupation_name_english',
+        'occupation_code',
+        'test_center_city',
+        'test_date',
+        'expected_result_date',
+        'result_status'
     ];
 
     protected $casts = [

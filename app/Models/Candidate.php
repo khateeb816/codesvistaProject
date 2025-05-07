@@ -97,4 +97,9 @@ class Candidate extends Model
     {
         return $this->hasMany(Navttc::class);
     }
+
+    public function embassyDocument()
+    {
+        return $this->hasOne(EmbassyDocument::class);
+    }
 }

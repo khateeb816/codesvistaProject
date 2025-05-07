@@ -20,6 +20,13 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('notes')->nullable();
+            $table->string('occupation_name_arabic');
+            $table->string('occupation_name_english');
+            $table->string('occupation_code');
+            $table->string('test_center_city');
+            $table->date('test_date')->nullable();
+            $table->date('expected_result_date')->nullable();
+            $table->string('result_status');
             $table->timestamps();
         });
     }

@@ -122,6 +122,7 @@ Route::put('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'u
 Route::delete('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'destroy'])->name('finalRegistration.destroy');
 Route::get('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'show'])->name('finalRegistration.show');
 Route::put('/finalRegistrations/{id}/change-status' , [FinalRegistrationController::class , 'changeStatus'])->name('finalRegistration.changeStatus');
+Route::post('/documents/update/{id}' , [FinalRegistrationController::class , 'updateDocuments'])->name('documents.update');
 
 
 Route::get('/experienceRanges' , [ExperienceRangeController::class , 'index'])->name('experienceRanges');

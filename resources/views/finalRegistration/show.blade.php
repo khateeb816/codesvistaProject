@@ -886,16 +886,16 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                        @endforeach
                                     </div>
-                            @endforeach
+                            @else
+                                <div class="alert alert-info">
+                                    <i class="fa fa-info-circle"></i> No medical records yet. Click the "Add Medical Record"
+                                    button to start adding.
+                                </div>
+                            @endif
                         </div>
                     </div>
-                @else
-                    <div class="alert alert-info">
-                        <i class="fa fa-info-circle"></i> No medical records yet. Click the "Add Medical Record"
-                        button to start adding.
-                    </div>
-                    @endif
                 </div>
             </div>
             <!-- Navttc Box -->
@@ -926,6 +926,25 @@
                                                         </h5>
 
                                                         <div class="form-group">
+                                                            <label>Occupation Details</label>
+                                                            <p><strong>Occupation Name (Arabic):</strong>
+                                                                {{ $record->occupation_name_arabic }}</p>
+                                                            <p><strong>Occupation Name (English):</strong>
+                                                                {{ $record->occupation_name_english }}</p>
+                                                            <p><strong>Occupation Code:</strong>
+                                                                {{ $record->occupation_code }}</p>
+
+                                                            <label>Test Center Details</label>
+                                                            <p><strong>Test Center City:</strong>
+                                                                {{ $record->test_center_city }}</p>
+
+                                                            <label>Test Schedule</label>
+                                                            <p><strong>Test Date:</strong> {{ $record->test_date }}</p>
+                                                            <p><strong>Expected Result Date:</strong>
+                                                                {{ $record->expected_result_date }}</p>
+                                                            <p><strong>Result Status:</strong>
+                                                                {{ $record->result_status }}</p>
+
                                                             <label for="status_{{ $record->id }}">Status:</label>
                                                             <select name="status" class="form-control"
                                                                 id="status_{{ $record->id }}">
@@ -964,60 +983,165 @@
                                                 </form>
                                             </div>
                                         </div>
+                                    </div>
+                                @endforeach
                                 </div>
-                        @endforeach
+                            @else
+                                <div class="alert alert-info">
+                                    <i class="fa fa-info-circle"></i> No NAVTTC records yet. Click the "Add Navttc Record"
+                                    button to start adding.
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                </div>
-            @else
-                <div class="alert alert-info">
-                    <i class="fa fa-info-circle"></i> No NAVTTC records yet. Click the "Add Navttc Record"
-                    button to start adding.
-                </div>
-                @endif
             </div>
         </div>
 
-
-
-
-
-
+        <!-- E Number Box -->
         <div class="info-box">
-            <div class="info-box-header d-flex align-items-center justify-content-between">
-                <h3 class=""> E Number</h3>
+            <div class="info-box-header">
+                <h3>E Number</h3>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-info">
-                        <i class="fa fa-info-circle"></i> E Number: {{ $candidate->e_number ?? 'Not Issued' }}
-                    </div>
-                </div>
-                <div class="container">
-                    <h5 class="card-title">Add / Update E Number</h5>
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <form action="{{ route('eNumber.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
-                                <div class="form-group">
-                                    <label for="e_number">E Number</label>
-                                    <input type="text" class="form-control" id="e_number" name="e_number">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                    @if($candidate->e_number)
+                        <div class="info-group">
+                            <div class="info-label">Current E Number</div>
+                            <div class="info-value">{{ $candidate->e_number }}</div>
                         </div>
-                    </div>
+                    @else
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle"></i> E Number: Not Issued
+                        </div>
+                    @endif
                 </div>
-
+            </div>
+            
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h5 class="card-title">Add / Update E Number</h5>
+                </div> 
+                <div class="col-md-10">
+                    <form action="{{ route('eNumber.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                        <div class="form-group">
+                            <label for="e_number">E Number</label>
+                            <input type="text" class="form-control" id="e_number" name="e_number" value="{{ $candidate->e_number ?? '' }}" placeholder="Enter E Number">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-
-
-
-
-
-
+        <!-- Documents for Embassy Box -->
+        <div class="info-box">
+            <div class="info-box-header">
+                <h3>Documents for Embassy</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{ route('documents.update', $candidate->id) }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="visa_form" name="visa_form" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->visa_form ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="visa_form">
+                                        Visa form
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="waqala_paper" name="waqala_paper" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->waqala_paper ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="waqala_paper">
+                                        Waqala paper (from online Saudi Website)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="e_number_print" name="e_number_print" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->e_number_print ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="e_number_print">
+                                        Candidate's E-Number Print
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="company_agreement" name="company_agreement" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->company_agreement ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="company_agreement">
+                                        Company's Agreement (Attested by the Embassy)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="navttc_report" name="navttc_report" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->navttc_report ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="navttc_report">
+                                        NAVTTC test Report (For required professions)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="driving_license" name="driving_license" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->driving_license ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="driving_license">
+                                        Driving Lic. (For Drivers & Operators)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="driving_undertaking" name="driving_license_undertaking" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->driving_license_undertaking ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="driving_undertaking">
+                                        Driving Lic. Undertaking
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="driving_online_print" name="driving_license_online_print" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->driving_license_online_print ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="driving_online_print">
+                                        Driving Lic. online Print
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="degree_copies" name="degree_copies" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->degree_copies ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="degree_copies">
+                                        Degree's copies (For required professions)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="agency_undertaking" name="agency_undertaking" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->agency_undertaking ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="agency_undertaking">
+                                        Agency's Undertaking
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="agency_license" name="agency_license" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->agency_license ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="agency_license">
+                                        Agency's valid License copy
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="police_certificate" name="police_certificate" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->police_certificate ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="police_certificate">
+                                        Police character certificate (Original)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="fir_newspaper" name="fir_newspaper" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->fir_newspaper ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="fir_newspaper">
+                                        FIR & Newspaper (If required)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="medical_report" name="medical_report" {{ isset($candidate->embassyDocument) && $candidate->embassyDocument->medical_report ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="medical_report">
+                                        Valid Medical fit Report of Candidate
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Update Documents</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Medical Record Modal -->
