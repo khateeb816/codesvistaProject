@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('navttcs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('candidate_id')->constrained('candidates')->onDelete('cascade');
+            $table->integer('candidate_id');
             $table->string('center_name');
             $table->string('course');
             $table->string('status')->default('Pending');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('notes')->nullable();
-            $table->string('occupation_name_arabic');
-            $table->string('occupation_name_english');
-            $table->string('occupation_code');
-            $table->string('test_center_city');
+            $table->string('occupation_name_arabic')->nullable();
+            $table->string('occupation_name_english')->nullable();
+            $table->string('occupation_code')->nullable();
+            $table->string('test_center_city')->nullable();
             $table->date('test_date')->nullable();
             $table->date('expected_result_date')->nullable();
-            $table->string('result_status');
+            $table->string('result_status')->nullable();
             $table->timestamps();
         });
     }

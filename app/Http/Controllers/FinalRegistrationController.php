@@ -7,6 +7,7 @@ use App\Models\Candidate;
 use App\Models\EmbassyDocument;
 use App\Models\ExperienceRange;
 use App\Models\MedicalCenter;
+use App\Models\ProtectorRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -463,7 +464,7 @@ class FinalRegistrationController extends Controller
     public function show($id)
     {
         $medicalCenters = MedicalCenter::all();
-        $candidate = Candidate::with('jobs', 'navttc', 'embassyDocument')->findOrFail($id);
+        $candidate = Candidate::with('jobs', 'navttc', 'embassyDocument', 'protectorRecords')->findOrFail($id);
         $qualifications = (array) json_decode($candidate->qualification, true);
         $professionalQualifications = (array) json_decode($candidate->professional_qualification, true);
         $professionalExperience = (array) json_decode($candidate->professional_experience, true);
@@ -531,5 +532,52 @@ class FinalRegistrationController extends Controller
 
         return redirect()->back()->with('success', 'Documents updated successfully!');
     }
-    
+    public function storeProtector(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'protector' => 'required',
+            'date' => 'required',
+            'expenses' => 'nullable',
+            'notes' => 'nullable',
+        ]);
+
+        ProtectorRecord::create([
+            'candidate_id' => $request->candidate_id,
+            'protector' => $request->protector,
+            'date' => $request->date,
+            'expenses' => $request->expenses,
+            'notes' => $request->notes,
+        ]);
+
+        return redirect()->back()->with('success', 'Protector added successfully!');
+    }
+    public function updateProtector(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'protector' => 'required',
+            'date' => 'required',
+            'expenses' => 'nullable',
+            'notes' => 'nullable',
+        ]);
+
+        ProtectorRecord::updateOrCreate(
+            ['candidate_id' => $request->candidate_id],
+            [
+                'protector' => $request->protector,
+                'date' => $request->date,
+                'expenses' => $request->expenses,
+                'notes' => $request->notes,
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Protector updated successfully!');
+    }
+    public function destroyProtector(Request $request , $id)
+    {
+        $protector = ProtectorRecord::findOrFail($id);
+        $protector->delete();
+        return redirect()->back()->with('success', 'Protector deleted successfully!');
+    }
 }

@@ -102,4 +102,8 @@ class Candidate extends Model
     {
         return $this->hasOne(EmbassyDocument::class);
     }
+    public function protectorRecords()
+    {
+        return $this->hasMany(ProtectorRecord::class);
+    }
 }

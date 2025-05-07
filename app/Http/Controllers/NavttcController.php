@@ -11,13 +11,19 @@ class NavttcController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'candidate_id' => 'required',
-            'center_name' => 'required',
-            'course' => 'required',
-            'status' => 'required|in:Pending,Completed,Failed',
+            'candidate_id' => 'required|integer',
+            'center_name' => 'required|string',
+            'course' => 'required|string',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
-            'notes' => 'nullable|string'
+            'notes' => 'nullable|string',
+            'occupation_name_arabic' => 'nullable|string',
+            'occupation_name_english' => 'nullable|string',
+            'occupation_code' => 'nullable|string',
+            'test_center_city' => 'nullable|string',
+            'test_date' => 'nullable|date',
+            'expected_result_date' => 'nullable|date',
+            'result_status' => 'required|string'
         ]);
 
         Navttc::create($request->all());
@@ -28,10 +34,19 @@ class NavttcController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:Pending,Completed,Failed',
+            'candidate_id' => 'required|integer',
+            'center_name' => 'required|string',
+            'course' => 'required|string',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
-            'notes' => 'nullable|string'
+            'notes' => 'nullable|string',
+            'occupation_name_arabic' => 'nullable|string',
+            'occupation_name_english' => 'nullable|string',
+            'occupation_code' => 'nullable|string',
+            'test_center_city' => 'nullable|string',
+            'test_date' => 'nullable|date',
+            'expected_result_date' => 'nullable|date',
+            'result_status' => 'nullable|string'
         ]);
 
         $navttc = Navttc::findOrFail($id);

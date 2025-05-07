@@ -123,6 +123,9 @@ Route::delete('/finalRegistrations/{id}' , [FinalRegistrationController::class ,
 Route::get('/finalRegistrations/{id}' , [FinalRegistrationController::class , 'show'])->name('finalRegistration.show');
 Route::put('/finalRegistrations/{id}/change-status' , [FinalRegistrationController::class , 'changeStatus'])->name('finalRegistration.changeStatus');
 Route::post('/documents/update/{id}' , [FinalRegistrationController::class , 'updateDocuments'])->name('documents.update');
+Route::post('/protector/store', [FinalRegistrationController::class, 'storeProtector'])->name('protector.store');
+Route::put('/protector/update/{id}', [FinalRegistrationController::class, 'updateProtector'])->name('protector.update');
+Route::delete('/protector/delete/{id}', [FinalRegistrationController::class, 'destroyProtector'])->name('protector.destroy');
 
 
 Route::get('/experienceRanges' , [ExperienceRangeController::class , 'index'])->name('experienceRanges');
