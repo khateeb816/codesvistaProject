@@ -3,6 +3,7 @@
 use App\Http\Controllers\AirlinesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EducationCategoryController;
+use App\Http\Controllers\ExpenceController;
 use App\Http\Controllers\ExperienceRangeController;
 use App\Http\Controllers\FinalRegistrationController;
 use App\Http\Controllers\HomeController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\TravelAgentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisaCategoryController;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -147,3 +149,10 @@ Route::put('/job/update/{id}', [JobController::class, 'update'])->name('job.upda
 Route::delete('/job/delete/{id}', [JobController::class, 'destroy'])->name('job.destroy');
 
 Route::post('/eNumber/store', [FinalRegistrationController::class, 'storeENumber'])->name('eNumber.store');
+
+Route::get('/expenses' , [ExpenceController::class , 'index'])->name('expenses');
+Route::get('/expenses/create' , [ExpenceController::class , 'create'])->name('expenses.create');
+Route::post('/expenses' , [ExpenceController::class , 'store'])->name('expenses.store');
+Route::get('/expenses/{id}' , [ExpenceController::class , 'edit'])->name('expenses.edit');
+Route::put('/expenses/{id}' , [ExpenceController::class , 'update'])->name('expenses.update');
+Route::delete('/expenses/{id}' , [ExpenceController::class , 'destroy'])->name('expenses.destroy');

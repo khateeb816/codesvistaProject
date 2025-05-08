@@ -196,7 +196,7 @@
                       <li><a href="{{ url('/') }}">Dashboard</a></li>
                       <li><a href="{{ route('users') }}">Manage Users</a></li>
                       <li><a href="{{ route('roles') }}">Manage Role</a></li>
-                      <li><a href="{{ url('manage_users_log') }}">User Log</a></li>
+                      {{-- <li><a href="{{ url('manage_users_log') }}">User Log</a></li> --}}
                     </ul>
                   </li>
                   <li><a><i class=" fa fa-solid fa-gears"></i> Configuration <span class="fa fa-chevron-down"></span></a>
@@ -207,28 +207,28 @@
                       <li><a href="{{ route('visaCategories') }}">Visa Categories</a></li>
                       <li><a href="{{ route('educationCategories') }}">Education Categories</a></li>
                       <li><a href="{{ route('jobCategories') }}">Job Categories</a></li>
-                      <li><a href="{{ url('sub_categories') }}">Sub Categories</a></li>
+                      {{-- <li><a href="{{ url('sub_categories') }}">Sub Categories</a></li>
                       <li><a href="{{ url('working_categories') }}">Workings Categories</a></li>
                       <li><a href="{{ url('visa_issuing_authorities') }}">Visa Issuing Authorities </a></li>
                       <li><a href="{{ url('verifying_instruction') }}">Verifying Instruction </a></li>
-                      <li><a href="{{ url('add_test_center') }}">Add Test Center </a></li>
+                      <li><a href="{{ url('add_test_center') }}">Add Test Center </a></li> --}}
                       <li><a href="{{ route('medicalCenters') }}">Add Medical Centers </a></li>
-                      <li><a href="{{ url('test_type') }}">Add Test Type</a></li>
+                      {{-- <li><a href="{{ url('test_type') }}">Add Test Type</a></li>
                       <li><a href="{{ url('age_range') }}">Age Range</a></li>
-                      <li><a href="{{ url('salary_range') }}">Salary Range</a></li>
+                      <li><a href="{{ url('salary_range') }}">Salary Range</a></li> --}}
                       <li><a href="{{ route('experienceRanges') }}">Experiance Range</a></li>
                       <li><a href="{{ route('airlines') }}">Airlines</a></li>
-                      <li><a href="{{ url('visa_profession') }}">Visa Profession</a></li>
+                      {{-- <li><a href="{{ url('visa_profession') }}">Visa Profession</a></li>
                       <li><a href="{{ url('sectors') }}">Sectors/ Instruction</a></li>
                       <li><a href="{{ url('skills') }}">Skills</a></li>
                       <li><a href="{{ url('cities') }}">Cities</a></li>
                       <li><a href="{{ url('education_level') }}">Education Level</a></li>
-                      <li><a href="{{ url('carrer_level') }}">Carrer Level</a></li>
+                      <li><a href="{{ url('carrer_level') }}">Carrer Level</a></li> --}}
                     </ul>
                   </li>
                   <li><a><i class=" fa fa-solid fa-gears"></i>Employer Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ url('employer_setup') }}">Employer Setup</a></li>
+                      {{-- <li><a href="{{ url('employer_setup') }}">Employer Setup</a></li>
                       <li><a href="{{ url('employer_plans') }}">Employer Plans</a></li>
                       <li><a href="{{ url('job_setup') }}">job setup</a></li>
                       <li><a href="{{ url('report_manager') }}">Report Manager(EM)</a></li>
@@ -236,14 +236,14 @@
                       <li><a href="{{ url('job_grouping') }}">Job Grouping for prints</a></li>
                       <li><a href="{{ url('status_job') }}">Status of jobs Report</a></li>
                       <li><a href="{{ url('security_fee') }}">Security Fee Refund prints</a></li>
-                      <li><a href="{{ url('travel_agent') }}">Travel Agent Ledger </a></li>
+                      <li><a href="{{ url('travel_agent') }}">Travel Agent Ledger </a></li> --}}
 
                     </ul>
                     <li><a><i class=" fa fa-solid fa-gears"></i>candidate Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('initialRegistration') }}">initial Registration</a></li>
-                      <li><a href="{{ route('finalRegistration') }}">Candidate Final Registration</a></li>
-                      <li><a href="{{ url('job_setup') }}">Apply Jobs</a></li>
+                      <li><a href="{{ route('finalRegistration') }}">Candidate Registration</a></li>
+                      {{-- <li><a href="{{ url('job_setup') }}">Apply Jobs</a></li>
                       <li><a href="{{ url('report_manager') }}">Shortlisting</a></li>
                       <li><a href="{{ url('employer_ledger') }}">Shortlisted Candidates</a></li>
                       <li><a href="{{ url('job_grouping') }}">Online Applications</a></li>
@@ -261,13 +261,13 @@
                       <li><a href="{{ url('travel_agent') }}">Completed Applications </a></li>
                       <li><a href="{{ url('status_job') }}">Job Applications</a></li>
                       <li><a href="{{ url('security_fee') }}">Freeze Applications</a></li>
-                      <li><a href="{{ url('travel_agent') }}">Completed Applications </a></li>
+                      <li><a href="{{ url('travel_agent') }}">Completed Applications </a></li> --}}
 
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bank"></i> Accounting & Finance <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a href="{{ url('404') }}">GChart of accounts</a></li>
+                    {{-- <li><a href="{{ url('404') }}">GChart of accounts</a></li>
                     <li><a href="{{ url('opening_balance') }}">Opening Balance</a></li>
                     <li><a href="{{ url('cash_receipt') }}">Cash Receipt</a></li>
                     <li><a href="{{ url('cash_payment') }}">Cash payment</a></li>
@@ -276,9 +276,9 @@
                     <li><a href="{{ url('job_payment') }}">job payment</a></li>
                     <li><a href="{{ url('travel_agent_payment') }}">Travel  Agent payment</a></li>
                     <li><a href="{{ url('candidate') }}">Candidate Receipt</a></li>
-                    <li><a href="{{ url('candidate_jv') }}">Candidate JV</a></li>
-                    <li><a href="{{ url('expenses_against_candidate') }}">Expenses Against Candidate</a></li>
-                    <li><a href="{{ url('chart_account_balance') }}">Chart of Account With Balance</a></li>
+                    <li><a href="{{ url('candidate_jv') }}">Candidate JV</a></li> --}}
+                    <li><a href="{{ route('expenses') }}">Expenses</a></li>
+                    {{-- <li><a href="{{ url('chart_account_balance') }}">Chart of Account With Balance</a></li>
                     <li><a href="{{ url('cash_book') }}">Cash book</a></li>
                     <li><a href="{{ url('bank_book') }}">Bank Book</a></li>
                     <li><a href="{{ url('gernal_ledge') }}">General Ledger</a></li>
@@ -287,10 +287,10 @@
                     <li><a href="{{ url('income_statement') }}">Income Statement</a></li>
                     <li><a href="{{ url('balance_sheet') }}">Balance Sheet</a></li>
                     <li><a href="{{ url('cash_flow_statement') }}">Cash flow statement</a></li>
-                    <li><a href="{{ url('equity_report') }}">Equity Report</a></li>
+                    <li><a href="{{ url('equity_report') }}">Equity Report</a></li> --}}
                   </ul>
                 </li>
-                <div class="d-none">
+                {{-- <div class="d-none">
                     <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="{{ url('general_elements') }}">General Elements</a></li>
@@ -325,7 +325,7 @@
                         <li><a href="{{ url('fixed_footer') }}">Fixed Footer</a></li>
                       </ul>
                     </li>
-                  </div>
+                  </div> --}}
 
                 </ul>
               </div>

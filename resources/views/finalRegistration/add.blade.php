@@ -227,7 +227,7 @@
 </style>
 
 <!-- Candidate Registration Form -->
-<div class="right_col" role="main">
+<div   role="main">
     <div class="">
         <div class="row">
             <div class="col-md-12">

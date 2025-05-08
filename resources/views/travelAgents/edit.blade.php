@@ -1,5 +1,5 @@
 @include('components.header')
-<div class="right_col" role="main">
+<div   role="main">
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
