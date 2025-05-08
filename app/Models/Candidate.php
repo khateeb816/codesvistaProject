@@ -106,4 +106,12 @@ class Candidate extends Model
     {
         return $this->hasMany(ProtectorRecord::class);
     }
+    public function protectorDocuments()
+    {
+        return $this->hasOne(ProtectorDocument::class);
+    }
+    public function expenseRecords()
+    {
+        return $this->hasMany(ExpenseRecord::class);
+    }
 }

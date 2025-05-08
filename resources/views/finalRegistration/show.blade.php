@@ -1194,81 +1194,99 @@
                 @if (isset($candidate->protectorRecords) && $candidate->protectorRecords->count() > 0)
                     <div class="container">
                         <div class="row">
-                            @foreach($candidate->protectorRecords as $record)
-                            <div class="col-md-6 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Protector Details</h5>
-                                        <p><strong>Protector:</strong> {{ $record->protector }}</p>
-                                        <p><strong>Date:</strong> {{ $record->date }}</p>
-                                        <p><strong>Expenses:</strong> {{ $record->expenses ?? 'N/A' }}</p>
-                                        <p><strong>Notes:</strong> {{ $record->notes ?? 'N/A' }}</p>
-                                    </div>
-                                    <div class="card-footer d-flex justify-content-between">
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#editProtectorModal{{ $record->id }}">
-                                            Edit
-                                        </button>
-                                        <form action="{{ route('protector.destroy', $record->id) }}"
-                                            method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Edit Protector Modal -->
-                            <div class="modal fade" id="editProtectorModal{{ $record->id }}" tabindex="-1"
-                                aria-labelledby="editProtectorModalLabel{{ $record->id }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editProtectorModalLabel{{ $record->id }}">Edit Protector Record</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                            @foreach ($candidate->protectorRecords as $record)
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Protector Details</h5>
+                                            <p><strong>Protector:</strong> {{ $record->protector }}</p>
+                                            <p><strong>Date:</strong> {{ $record->date }}</p>
+                                            <p><strong>Expenses:</strong> {{ $record->expenses ?? 'N/A' }}</p>
+                                            <p><strong>Notes:</strong> {{ $record->notes ?? 'N/A' }}</p>
                                         </div>
-                                        <form action="{{ route('protector.update', $record->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="modal-body">
-                                                <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
-                                                <div class="form-group mb-3">
-                                                    <label for="protector{{ $record->id }}">Protector</label>
-                                                    <select class="form-control" id="protector{{ $record->id }}" name="protector">
-                                                        <option value="">Select Protector</option>
-                                                        <option value="PTN" {{ $record->protector == 'PTN' ? 'selected' : '' }}>PTN</option>
-                                                        <option value="Allied Bank" {{ $record->protector == 'Allied Bank' ? 'selected' : '' }}>Allied Bank</option>
-                                                        <option value="NBP Form" {{ $record->protector == 'NBP Form' ? 'selected' : '' }}>NBP Form</option>
-                                                        <option value="State Life Insurance" {{ $record->protector == 'State Life Insurance' ? 'selected' : '' }}>State Life Insurance</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="date{{ $record->id }}">Date</label>
-                                                    <input type="date" class="form-control" id="date{{ $record->id }}" name="date"
-                                                        value="{{ $record->date }}">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="expenses{{ $record->id }}">Expenses (Optional)</label>
-                                                    <input type="text" class="form-control" id="expenses{{ $record->id }}"
-                                                        name="expenses" value="{{ $record->expenses }}">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="notes{{ $record->id }}">Notes (Optional)</label>
-                                                    <textarea class="form-control" id="notes{{ $record->id }}" name="notes" rows="3">{{ $record->notes }}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Update Protector
-                                                    Record</button>
-                                            </div>
-                                        </form>
+                                        <div class="card-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editProtectorModal{{ $record->id }}">
+                                                Edit
+                                            </button>
+                                            <form action="{{ route('protector.destroy', $record->id) }}"
+                                                method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <!-- Edit Protector Modal -->
+                                <div class="modal fade" id="editProtectorModal{{ $record->id }}" tabindex="-1"
+                                    aria-labelledby="editProtectorModalLabel{{ $record->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="editProtectorModalLabel{{ $record->id }}">Edit Protector
+                                                    Record</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('protector.update', $record->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="candidate_id"
+                                                        value="{{ $candidate->id }}">
+                                                    <div class="form-group mb-3">
+                                                        <label for="protector{{ $record->id }}">Protector</label>
+                                                        <select class="form-control"
+                                                            id="protector{{ $record->id }}" name="protector">
+                                                            <option value="">Select Protector</option>
+                                                            <option value="PTN"
+                                                                {{ $record->protector == 'PTN' ? 'selected' : '' }}>
+                                                                PTN</option>
+                                                            <option value="Allied Bank"
+                                                                {{ $record->protector == 'Allied Bank' ? 'selected' : '' }}>
+                                                                Allied Bank</option>
+                                                            <option value="NBP Form"
+                                                                {{ $record->protector == 'NBP Form' ? 'selected' : '' }}>
+                                                                NBP Form</option>
+                                                            <option value="State Life Insurance"
+                                                                {{ $record->protector == 'State Life Insurance' ? 'selected' : '' }}>
+                                                                State Life Insurance</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="date{{ $record->id }}">Date</label>
+                                                        <input type="date" class="form-control"
+                                                            id="date{{ $record->id }}" name="date"
+                                                            value="{{ $record->date }}">
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="expenses{{ $record->id }}">Expenses
+                                                            (Optional)
+                                                        </label>
+                                                        <input type="text" class="form-control"
+                                                            id="expenses{{ $record->id }}" name="expenses"
+                                                            value="{{ $record->expenses }}">
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="notes{{ $record->id }}">Notes
+                                                            (Optional)</label>
+                                                        <textarea class="form-control" id="notes{{ $record->id }}" name="notes" rows="3">{{ $record->notes }}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Update Protector
+                                                        Record</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -1284,6 +1302,273 @@
         </div>
     </div>
 
+
+    <!-- Documents for Protector -->
+    <div class="info-box">
+        <div class="info-box-header">
+            <h3>Documents for Protector</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{{ route('protectorDocument.update', $candidate->id) }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="bc_form" name="bc_form"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->bc_form ? 'checked' : '' }}>
+                                <label class="form-check-label" for="bc_form">
+                                    BC FORM (FROM ALLIED BANK)
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="national_bank_slip"
+                                    name="national_bank_slip"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->national_bank_slip ? 'checked' : '' }}>
+                                <label class="form-check-label" for="national_bank_slip">
+                                    NATIONAL BANK`S DEPOSIT SLIP
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="insurance_paper"
+                                    name="insurance_paper"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->insurance_paper ? 'checked' : '' }}>
+                                <label class="form-check-label" for="insurance_paper">
+                                    INSURANCE PAPER
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="passport_id_card"
+                                    name="passport_id_card"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->passport_id_card ? 'checked' : '' }}>
+                                <label class="form-check-label" for="passport_id_card">
+                                    PASSPORT & ID CARD
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="ptn_form" name="ptn_form"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->ptn_form ? 'checked' : '' }}>
+                                <label class="form-check-label" for="ptn_form">
+                                    PTN FORM ORIGINAL
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="bank_details"
+                                    name="bank_details"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->bank_details ? 'checked' : '' }}>
+                                <label class="form-check-label" for="bank_details">
+                                    CANDIDATES BANK DETAILS + NOMINEE`S ID CARD COPIES & MOBILE NUMBER
+                                </label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="diary_form" name="diary_form"
+                                    {{ isset($candidate->protectorDocuments) && $candidate->protectorDocuments->diary_form ? 'checked' : '' }}>
+                                <label class="form-check-label" for="diary_form">
+                                    DIARY FORM (PREPARED BY THE OFFICE)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">Update Documents</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--  Expences Box -->
+    <div class="info-box">
+        <div class="info-box-header d-flex align-items-center justify-content-between">
+            <h3 class="">Expenses</h3>
+            <div class="action-buttons mt-2">
+                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                    data-bs-target="#expenseRecordModal">
+                    <i class="fa fa-money"></i> Add Expense Record
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @if (isset($candidate->expenseRecords) && $candidate->expenseRecords->count() > 0)
+                    <div class="container">
+                        <div class="row">
+                            @foreach ($candidate->expenseRecords as $record)
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Expense Details</h5>
+                                            <p><strong>Amount:</strong> {{ $record->amount }}</p>
+                                            <p><strong>Date:</strong> {{ $record->date }}</p>
+                                            <p><strong>Expense Type:</strong> {{ $record->expense_type ?? 'N/A' }}</p>
+                                            <p><strong>Payment Method:</strong> {{ $record->payment_method ?? 'N/A' }}
+                                            </p>
+                                            <p><strong>Reference Number:</strong>
+                                                {{ $record->reference_number ?? 'N/A' }}</p>
+                                            <p><strong>Description:</strong> {{ $record->description ?? 'N/A' }}</p>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editExpenseModal{{ $record->id }}">
+                                                Edit
+                                            </button>
+                                            <form action="{{ route('expenseRecord.destroy', $record->id) }}"
+                                                method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Edit Expense Modal -->
+                                <div class="modal fade" id="editExpenseModal{{ $record->id }}" tabindex="-1"
+                                    aria-labelledby="editExpenseModalLabel{{ $record->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    id="editExpenseModalLabel{{ $record->id }}">Edit Expense
+                                                    Record</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('expenseRecord.update', $record->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="candidate_id"
+                                                        value="{{ $candidate->id }}">
+                                                    <div class="form-group mb-3">
+                                                        <label for="amount{{ $record->id }}">Amount</label>
+                                                        <input type="number" class="form-control"
+                                                            id="amount{{ $record->id }}" name="amount"
+                                                            value="{{ $record->amount }}">
+                                                    </div>
+
+                                                    <div class="form-group mb-3">
+                                                        <label for="expense_type{{ $record->id }}">Expense
+                                                            Type</label>
+                                                        <select class="form-control"
+                                                            id="expense_type{{ $record->id }}"
+                                                            name="expense_type">
+                                                            <option value="E-NUMBER FEE (ONLINE)"
+                                                                {{ $record->expense_type == 'E-NUMBER FEE (ONLINE)' ? 'selected' : '' }}>
+                                                                E-NUMBER FEE (ONLINE)</option>
+                                                            <option value="VISA FEE (STAMPING/OBJECTION)"
+                                                                {{ $record->expense_type == 'VISA FEE (STAMPING/OBJECTION)' ? 'selected' : '' }}>
+                                                                VISA FEE (STAMPING/OBJECTION)</option>
+                                                            <option value="ALLIDE BANK`s FEE"
+                                                                {{ $record->expense_type == 'ALLIDE BANK`s FEE' ? 'selected' : '' }}>
+                                                                ALLIDE BANK`s FEE</option>
+                                                            <option value="NATIONAL BANK`s FEE WITH INSURANCE FEE"
+                                                                {{ $record->expense_type == 'NATIONAL BANK`s FEE WITH INSURANCE FEE' ? 'selected' : '' }}>
+                                                                NATIONAL BANK`s FEE WITH INSURANCE FEE</option>
+                                                            <option value="PROTECTOR FEE (SOME TIME WITH EXTRA EXPENSES)"
+                                                                {{ $record->expense_type == 'PROTECTOR FEE (SOME TIME WITH EXTRA EXPENSES)' ? 'selected' : '' }}>
+                                                                PROTECTOR FEE (SOME TIME WITH EXTRA EXPENSES)</option>
+                                                            <option value="TRANSPORTATION EXPENCES"
+                                                                {{ $record->expense_type == 'TRANSPORTATION EXPENCES' ? 'selected' : '' }}>
+                                                                TRANSPORTATION EXPENCES</option>
+                                                            <option value="SALARIES"
+                                                                {{ $record->expense_type == 'SALARIES' ? 'selected' : '' }}>
+                                                                SALARIES</option>
+                                                            <option value="HOTEL & KITCHEN EXPENSES (DAILY/WEEKLY/MONTHELY)"
+                                                                {{ $record->expense_type == 'HOTEL & KITCHEN EXPENSES (DAILY/WEEKLY/MONTHELY)' ? 'selected' : '' }}>
+                                                                HOTEL & KITCHEN EXPENSES (DAILY/WEEKLY/MONTHELY)</option>
+                                                            <option value="MISCELLANEOUS EXPENSES (WITH MANUALLY ADDING OPTION)"
+                                                                {{ $record->expense_type == 'MISCELLANEOUS EXPENSES (WITH MANUALLY ADDING OPTION)' ? 'selected' : '' }}>
+                                                                MISCELLANEOUS EXPENSES (WITH MANUALLY ADDING OPTION)</option>
+                                                            <option value="PERSONAL EXPENSES OF BOSS (WITH MANUALLY ADDING OPTION)"
+                                                                {{ $record->expense_type == 'PERSONAL EXPENSES OF BOSS (WITH MANUALLY ADDING OPTION)' ? 'selected' : '' }}>
+                                                                PERSONAL EXPENSES OF BOSS (WITH MANUALLY ADDING OPTION)</option>
+                                                            <option value="TICKETS PAYMENT"
+                                                                {{ $record->expense_type == 'TICKETS PAYMENT' ? 'selected' : '' }}>
+                                                                TICKETS PAYMENT</option>
+                                                            <option value="OFFICE MAINTENANCE EXPENSES"
+                                                                {{ $record->expense_type == 'OFFICE MAINTENANCE EXPENSES' ? 'selected' : '' }}>
+                                                                OFFICE MAINTENANCE EXPENSES</option>
+                                                            <option value="STATIONARY"
+                                                                {{ $record->expense_type == 'STATIONARY' ? 'selected' : '' }}>
+                                                                STATIONARY</option>
+                                                            <option value="ELECTRICITY BILL"
+                                                                {{ $record->expense_type == 'ELECTRICITY BILL' ? 'selected' : '' }}>
+                                                                ELECTRICITY BILL</option>
+                                                            <option value="PTCL BILLS"
+                                                                {{ $record->expense_type == 'PTCL BILLS' ? 'selected' : '' }}>
+                                                                PTCL BILLS</option>
+                                                            <option value="CHARITY"
+                                                                {{ $record->expense_type == 'CHARITY' ? 'selected' : '' }}>
+                                                                CHARITY</option>
+                                                            <option value="COURIER EXPENSES"
+                                                                {{ $record->expense_type == 'COURIER EXPENSES' ? 'selected' : '' }}>
+                                                                COURIER EXPENSES</option>
+                                                            <option value="COMPUTER ASSECORIES"
+                                                                {{ $record->expense_type == 'COMPUTER ASSECORIES' ? 'selected' : '' }}>
+                                                                COMPUTER ASSECORIES</option>
+                                                            <option value="CLEANING EXPENSES"
+                                                                {{ $record->expense_type == 'CLEANING EXPENSES' ? 'selected' : '' }}>
+                                                                CLEANING EXPENSES</option>
+                                                            <option value="OTHER EXPENSES"
+                                                                {{ $record->expense_type == 'OTHER EXPENSES' ? 'selected' : '' }}>
+                                                                OTHER EXPENSES</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="date{{ $record->id }}">Date</label>
+                                                        <input type="date" class="form-control"
+                                                            id="date{{ $record->id }}" name="date"
+                                                            value="{{ $record->date }}">
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="payment_method{{ $record->id }}">Payment
+                                                            Method</label>
+                                                        <select class="form-control"
+                                                            id="payment_method{{ $record->id }}"
+                                                            name="payment_method">
+                                                            <option value="Cash">Cash</option>
+                                                            <option value="Credit Card">Credit Card</option>
+                                                            <option value="Bank Transfer">Bank Transfer</option>
+                                                            <option value="Check">Check</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="description{{ $record->id }}">Description
+                                                            (Optional)
+                                                        </label>
+                                                        <textarea class="form-control" id="description{{ $record->id }}" name="description" rows="3">{{ $record->description }}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Update Expense
+                                                        Record</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"></i> No protector records yet. Click the "Add Protector Record"
+                        button to
+                        start adding.
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 
     <!-- Medical Record Modal -->
     <div class="modal fade" id="medicalProcessModal" tabindex="-1" aria-labelledby="medicalProcessModalLabel"
@@ -1465,6 +1750,7 @@
             </div>
         </div>
     </div>
+    <!-- Medical Process Modal -->
     <div class="modal fade" id="medicalProcessModal" tabindex="-1" aria-labelledby="medicalProcessModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -1500,6 +1786,114 @@
         </div>
     </div>
 
+    <!-- Expense Record Modal -->
+    <div class="modal fade" id="expenseRecordModal" tabindex="-1" aria-labelledby="expenseRecordModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="expenseRecordModalLabel">Add Expense Record</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form action="{{ route('expenseRecord.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="amount">Amount <span class="text-danger">*</span></label>
+                                    <input type="number" step="0.01" class="form-control" id="amount"
+                                        name="amount" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="date">Date <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="date" name="date"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="expense_type">Expense Type</label>
+                                    <select class="form-control"
+                                                            id="expense_type"
+                                                            name="expense_type">
+                                                            <option value="E-NUMBER FEE (ONLINE)">
+                                                                E-NUMBER FEE (ONLINE)</option>
+                                                            <option value="VISA FEE (STAMPING/OBJECTION)">
+                                                                VISA FEE (STAMPING/OBJECTION)</option>
+                                                            <option value="ALLIDE BANK`s FEE">
+                                                                ALLIDE BANK`s FEE</option>
+                                                            <option value="NATIONAL BANK`s FEE WITH INSURANCE FEE">
+                                                                NATIONAL BANK`s FEE WITH INSURANCE FEE</option>
+                                                            <option value="PROTECTOR FEE (SOME TIME WITH EXTRA EXPENSES)">
+                                                                PROTECTOR FEE (SOME TIME WITH EXTRA EXPENSES)</option>
+                                                            <option value="TRANSPORTATION EXPENCES">
+                                                                TRANSPORTATION EXPENCES</option>
+                                                            <option value="SALARIES">
+                                                                SALARIES</option>
+                                                            <option value="HOTEL & KITCHEN EXPENSES (DAILY/WEEKLY/MONTHELY)">
+                                                                HOTEL & KITCHEN EXPENSES (DAILY/WEEKLY/MONTHELY)</option>
+                                                            <option value="MISCELLANEOUS EXPENSES (WITH MANUALLY ADDING OPTION)">
+                                                                MISCELLANEOUS EXPENSES (WITH MANUALLY ADDING OPTION)</option>
+                                                            <option value="PERSONAL EXPENSES OF BOSS (WITH MANUALLY ADDING OPTION)">
+                                                                PERSONAL EXPENSES OF BOSS (WITH MANUALLY ADDING OPTION)</option>
+                                                            <option value="TICKETS PAYMENT">
+                                                                TICKETS PAYMENT</option>
+                                                            <option value="OFFICE MAINTENANCE EXPENSES">
+                                                                OFFICE MAINTENANCE EXPENSES</option>
+                                                            <option value="STATIONARY">
+                                                                STATIONARY</option>
+                                                            <option value="ELECTRICITY BILL">
+                                                                ELECTRICITY BILL</option>
+                                                            <option value="PTCL BILLS">
+                                                                PTCL BILLS</option>
+                                                            <option value="CHARITY">
+                                                                CHARITY</option>
+                                                            <option value="COURIER EXPENSES">
+                                                                COURIER EXPENSES</option>
+                                                            <option value="COMPUTER ASSECORIES">
+                                                                COMPUTER ASSECORIES</option>
+                                                            <option value="CLEANING EXPENSES">
+                                                                CLEANING EXPENSES</option>
+                                                            <option value="OTHER EXPENSES">
+                                                                OTHER EXPENSES</option>
+                                                        </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="payment_method">Payment Method</label>
+                                    <select class="form-control" id="payment_method" name="payment_method">
+                                        <option value="">Select Payment Method</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                        <option value="Check">Check</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Expense Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         function updateMedicalStatus(recordId) {
             // Get the selected dropdown value
@@ -1524,7 +1918,8 @@
 </div>
 
 <!-- Apply Job Modal -->
-<div class="modal fade" id="applyJobModal" tabindex="-1" aria-labelledby="applyJobModalLabel" aria-hidden="true">
+<div class="modal fade" id="applyJobModal" tabindex="-1" aria-labelledby="applyJobModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -1539,13 +1934,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="title">Job Title</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="company">Company</label>
-                                <input type="text" class="form-control" id="company" name="company" required>
+                                <input type="text" class="form-control" id="company" name="company"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -1553,7 +1950,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="location">Location</label>
-                                <input type="text" class="form-control" id="location" name="location" required>
+                                <input type="text" class="form-control" id="location" name="location"
+                                    required>
                             </div>
                         </div>
                     </div>

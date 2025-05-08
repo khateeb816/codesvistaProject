@@ -7,7 +7,9 @@ use App\Models\Candidate;
 use App\Models\EmbassyDocument;
 use App\Models\ExperienceRange;
 use App\Models\MedicalCenter;
+use App\Models\ProtectorDocument;
 use App\Models\ProtectorRecord;
+use App\Models\ExpenseRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -464,7 +466,7 @@ class FinalRegistrationController extends Controller
     public function show($id)
     {
         $medicalCenters = MedicalCenter::all();
-        $candidate = Candidate::with('jobs', 'navttc', 'embassyDocument', 'protectorRecords')->findOrFail($id);
+        $candidate = Candidate::with('jobs', 'navttc', 'embassyDocument', 'protectorRecords', 'protectorDocuments', 'expenseRecords')->findOrFail($id);
         $qualifications = (array) json_decode($candidate->qualification, true);
         $professionalQualifications = (array) json_decode($candidate->professional_qualification, true);
         $professionalExperience = (array) json_decode($candidate->professional_experience, true);
@@ -579,5 +581,125 @@ class FinalRegistrationController extends Controller
         $protector = ProtectorRecord::findOrFail($id);
         $protector->delete();
         return redirect()->back()->with('success', 'Protector deleted successfully!');
+    }
+
+    public function storeProtectorDocument(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'bc_form' => 'nullable',
+            'national_bank_slip' => 'nullable',
+            'insurance_paper' => 'nullable',
+            'passport_id_card' => 'nullable',
+            'ptn_form' => 'nullable',
+            'bank_details' => 'nullable',
+            'diary_form' => 'nullable',
+            'expenses' => 'nullable|numeric',
+        ]);
+
+        ProtectorDocument::updateOrCreate(
+            ['candidate_id' => $request->candidate_id],
+            [
+                'bc_form' => $request->has('bc_form') ? 1 : 0,
+                'national_bank_slip' => $request->has('national_bank_slip') ? 1 : 0,
+                'insurance_paper' => $request->has('insurance_paper') ? 1 : 0,
+                'passport_id_card' => $request->has('passport_id_card') ? 1 : 0,
+                'ptn_form' => $request->has('ptn_form') ? 1 : 0,
+                'bank_details' => $request->has('bank_details') ? 1 : 0,
+                'diary_form' => $request->has('diary_form') ? 1 : 0,
+                'expenses' => $request->expenses,
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Protector document added successfully!');
+    }
+    public function updateProtectorDocument(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'bc_form' => 'nullable',
+            'national_bank_slip' => 'nullable',
+            'insurance_paper' => 'nullable',
+            'passport_id_card' => 'nullable',
+            'ptn_form' => 'nullable',
+            'bank_details' => 'nullable',
+            'diary_form' => 'nullable',
+            'expenses' => 'nullable|numeric',
+        ]);
+
+        ProtectorDocument::updateOrCreate(
+            ['candidate_id' => $request->candidate_id],
+            [
+            'bc_form' => $request->has('bc_form') ? 1 : 0,
+            'national_bank_slip' => $request->has('national_bank_slip') ? 1 : 0,
+            'insurance_paper' => $request->has('insurance_paper') ? 1 : 0,
+            'passport_id_card' => $request->has('passport_id_card') ? 1 : 0,
+            'ptn_form' => $request->has('ptn_form') ? 1 : 0,
+            'bank_details' => $request->has('bank_details') ? 1 : 0,
+            'diary_form' => $request->has('diary_form') ? 1 : 0,
+            'expenses' => $request->expenses,
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Protector document updated successfully!');
+    }
+    public function destroyProtectorDocument(Request $request , $id)
+    {
+        $protectorDocument = ProtectorDocument::findOrFail($id);
+        $protectorDocument->delete();
+        return redirect()->back()->with('success', 'Protector document deleted successfully!');
+    }
+
+    public function storeExpenseRecord(Request $request)
+    {
+        $request->validate([
+            'candidate_id' => 'required',
+            'amount' => 'required|numeric',
+            'description' => 'nullable',
+            'date' => 'required|date',
+            'expense_type' => 'nullable',
+            'payment_method' => 'nullable',
+        ]);
+
+        ExpenseRecord::create([
+            'candidate_id' => $request->candidate_id,
+            'amount' => $request->amount,
+            'description' => $request->description,
+            'date' => $request->date,
+            'expense_type' => $request->expense_type,
+            'payment_method' => $request->payment_method,
+            'reference_number' => rand(10000, 99999),
+        ]);
+
+        return redirect()->back()->with('success', 'Expense record added successfully!');
+    }
+
+    public function updateExpenseRecord(Request $request, $id)
+    {
+        $request->validate([
+            'amount' => 'required|numeric',
+            'description' => 'nullable',
+            'date' => 'required|date',
+            'expense_type' => 'nullable',
+            'payment_method' => 'nullable',
+        ]);
+
+        $expenseRecord = ExpenseRecord::findOrFail($id);
+        $expenseRecord->update([
+            'amount' => $request->amount,
+            'description' => $request->description,
+            'date' => $request->date,
+            'expense_type' => $request->expense_type,
+            'payment_method' => $request->payment_method,
+        ]);
+
+        return redirect()->back()->with('success', 'Expense record updated successfully!');
+    }
+
+    public function destroyExpenseRecord(Request $request, $id)
+    {
+        $expenseRecord = ExpenseRecord::findOrFail($id);
+        $expenseRecord->delete();
+        return redirect()->back()->with('success', 'Expense record deleted successfully!');
     }
 }

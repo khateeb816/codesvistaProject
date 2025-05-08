@@ -126,6 +126,14 @@ Route::post('/documents/update/{id}' , [FinalRegistrationController::class , 'up
 Route::post('/protector/store', [FinalRegistrationController::class, 'storeProtector'])->name('protector.store');
 Route::put('/protector/update/{id}', [FinalRegistrationController::class, 'updateProtector'])->name('protector.update');
 Route::delete('/protector/delete/{id}', [FinalRegistrationController::class, 'destroyProtector'])->name('protector.destroy');
+Route::post('/protectorDocument/store', [FinalRegistrationController::class, 'storeProtectorDocument'])->name('protectorDocument.store');
+Route::post('/protectorDocument/update/{id}', [FinalRegistrationController::class, 'updateProtectorDocument'])->name('protectorDocument.update');
+Route::delete('/protectorDocument/delete/{id}', [FinalRegistrationController::class, 'destroyProtectorDocument'])->name('protectorDocument.destroy');
+
+// Expense Record Routes
+Route::post('/expenseRecord/store', [FinalRegistrationController::class, 'storeExpenseRecord'])->name('expenseRecord.store');
+Route::put('/expenseRecord/update/{id}', [FinalRegistrationController::class, 'updateExpenseRecord'])->name('expenseRecord.update');
+Route::delete('/expenseRecord/delete/{id}', [FinalRegistrationController::class, 'destroyExpenseRecord'])->name('expenseRecord.destroy');
 
 
 Route::get('/experienceRanges' , [ExperienceRangeController::class , 'index'])->name('experienceRanges');
