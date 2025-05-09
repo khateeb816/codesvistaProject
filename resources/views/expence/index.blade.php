@@ -40,7 +40,7 @@
                                     <div class="col-md-3 mb-3" id="year-field">
                                         <label for="year">Year</label>
                                         <select name="year" id="year" class="form-control">
-                                            @for ($i = date('Y'); $i >= date('Y') - 5; $i--)
+                                            @for ($i = date('Y'); $i >= 1970; $i--)
                                                 <option value="{{ $i }}" {{ $year == $i ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
