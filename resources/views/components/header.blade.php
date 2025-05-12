@@ -10,7 +10,7 @@
     <base href="{{ url('/') }}/">
     <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/ico" />
 
-    <title>Hai Company</title>
+    <title>Qureshi Brother's</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -168,7 +168,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{ url('/') }}" class="site_title"><i class="border-0"><img src="{{ asset('images/logo.jpg') }}" alt="" width="30"></i> <span>Cm Name</span></a>
+              <a href="{{ url('/') }}" class="site_title"><i class="border-0"><img src="{{ asset('images/logo.jpg') }}" alt="" width="30"></i> <span>Qureshi brother's</span></a>
             </div>
             <div class="clearfix"></div>
 
@@ -178,8 +178,8 @@
                 <img src="{{ asset('images/img.jpg') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Flf </h2>
+                <span>Welcome</span>
+                {{-- <h2> </h2> --}}
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -226,8 +226,8 @@
                       <li><a href="{{ url('carrer_level') }}">Carrer Level</a></li> --}}
                     </ul>
                   </li>
-                  <li><a><i class=" fa fa-solid fa-gears"></i>Employer Management<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
+                  {{-- <li><a><i class=" fa fa-solid fa-gears"></i>Employer Management<span class="fa fa-chevron-down"></span></a> --}}
+                    {{-- <ul class="nav child_menu"> --}}
                       {{-- <li><a href="{{ url('employer_setup') }}">Employer Setup</a></li>
                       <li><a href="{{ url('employer_plans') }}">Employer Plans</a></li>
                       <li><a href="{{ url('job_setup') }}">job setup</a></li>
@@ -238,10 +238,10 @@
                       <li><a href="{{ url('security_fee') }}">Security Fee Refund prints</a></li>
                       <li><a href="{{ url('travel_agent') }}">Travel Agent Ledger </a></li> --}}
 
-                    </ul>
+                    {{-- </ul> --}}
                     <li><a><i class=" fa fa-solid fa-gears"></i>candidate Management<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('initialRegistration') }}">initial Registration</a></li>
+                      {{-- <li><a href="{{ route('initialRegistration') }}">initial Registration</a></li> --}}
                       <li><a href="{{ route('finalRegistration') }}">Candidate Registration</a></li>
                       {{-- <li><a href="{{ url('job_setup') }}">Apply Jobs</a></li>
                       <li><a href="{{ url('report_manager') }}">Shortlisting</a></li>
@@ -397,20 +397,20 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="">Flf Khan
+                    <img src="{{ asset('images/logo.jpg') }}" alt="">Qureshi
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="javascript:;"> Profile</a>
+                    {{-- <a class="dropdown-item" href="javascript:;"> Profile</a>
                     <a class="dropdown-item" href="javascript:;">
                       <span class="badge bg-red pull-right">50%</span>
                       <span>Settings</span>
                     </a>
-                    <a class="dropdown-item" href="javascript:;">Help</a>
+                    <a class="dropdown-item" href="javascript:;">Help</a> --}}
                     <a class="dropdown-item" href="{{ url('login') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
-                <li role="presentation" class="nav-item dropdown open">
+                {{-- <li role="presentation" class="nav-item dropdown open">
                   <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-green">6</span>
@@ -473,7 +473,7 @@
                       </div>
                     </li>
                   </ul>
-                </li>
+                </li> --}}
               </ul>
             </nav>
           </div>

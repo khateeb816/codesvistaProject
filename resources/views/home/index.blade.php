@@ -3,25 +3,27 @@
 <!-- top tiles -->
 <div class="row" style="display: inline-block;">
     <div class="tile_count">
-      <div class="col-md-2 col-sm-4  tile_stats_count">
+       <div class="col-md-3 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-        <div class="count">2500</div>
-        <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+        <div class="count">{{@$candidates}}</div>
+        <span class="count_bottom"><i class="green"> </i> Total Users</span>
       </div>
-      <div class="col-md-2 col-sm-4  tile_stats_count">
+      <div class="col-md-3 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
-        <div class="count">123.50</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+        <div class="count">{{@$totalAmount}}</div>
+        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> </i>Total amount </span>
       </div>
-      <div class="col-md-2 col-sm-4  tile_stats_count">
+      <div class="col-md-3 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-        <div class="count green">2,500</div>
-        <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        <div class="count green">{{@$candidatesmale}}</div>
+           <span class="count_bottom"><i class="green"> </i> Total male Users</span>
+
       </div>
-      <div class="col-md-2 col-sm-4  tile_stats_count">
+      <div class="col-md-3 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-        <div class="count">4,567</div>
-        <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+        <div class="count">{{@$candidatesfemale}}</div>
+                   <span class="count_bottom"><i class="green"> </i> Total female Users</span>
+
       </div>
       <div class="col-md-2 col-sm-4  tile_stats_count">
         <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
@@ -54,7 +56,8 @@
         </div>
 
         <div class="col-md-9 col-sm-9 ">
-          <div id="chart_plot_01" class="demo-placeholder"></div>
+             <canvas id="expenseChart" width="100%" height="60"></canvas>
+
         </div>
         <div class="col-md-3 col-sm-3  bg-white">
           <div class="x_title">
@@ -686,4 +689,47 @@
   </div>
 
   <!-- /page content -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <script>
+    const labels = {!! json_encode($expenseChartData->keys()) !!};
+    const data = {!! json_encode($expenseChartData->values()) !!};
+
+    const ctx = document.getElementById('expenseChart').getContext('2d');
+    const expenseChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Daily Expenses',
+                data: data,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Amount'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 @include('components.footer')

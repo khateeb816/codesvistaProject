@@ -21,7 +21,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisaCategoryController;
 use Illuminate\Support\Facades\Route;
 
-
+Route::get('/optimize', function() {
+    Artisan::call('optimize');
+    return "optimized!";
+});
 
 
 
